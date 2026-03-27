@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nama Organisasi</title>
+  <meta
+    name="description"
+    content="Website resmi organisasi modern untuk profil, program, berita, agenda, dan kontak."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #08111f;
+      --card: #ffffff;
+      --text: #102033;
+      --text-soft: #5f6f85;
+      --white: #ffffff;
+      --primary: #0f6fff;
+      --primary-2: #32c5ff;
+      --accent: #ffd166;
+      --line: rgba(255, 255, 255, 0.12);
+      --shadow: 0 20px 60px rgba(2, 12, 27, 0.18);
+      --radius: 24px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background:
+        linear-gradient(180deg, #08111f 0%, #0b1524 38%, #eef4fb 38%, #f6f9fc 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-title {
+      max-width: 680px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-title .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(15, 111, 255, 0.1);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      color: #0d1b2d;
+    }
+
+    .section-title p {
+      color: var(--text-soft);
+      font-size: 1rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 17, 31, 0.74);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 78px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--accent), #fff2b8);
+      color: #0d1b2d;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 0 14px 30px rgba(255, 209, 102, 0.25);
+    }
+
+    .brand-text strong {
+      display: block;
+      color: white;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .brand-text span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.88rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
+    .nav-menu a:hover {
+      color: white;
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 16px 36px rgba(15, 111, 255, 0.28);
+    }
+
+    .hero {
+      position: relative;
+      padding: 72px 0 110px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(8, 17, 31, 0.78), rgba(15, 111, 255, 0.38)),
+        url("images/foto-organisasi-16x9.jpg") center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-copy .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      margin-bottom: 22px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 0.98;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-copy p {
+      max-width: 640px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.06rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffe7a1);
+      color: #102033;
+      box-shadow: 0 18px 38px rgba(255, 209, 102, 0.24);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      color: white;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 700px;
+    }
+
+    .mini-stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    .mini-stat span {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.92rem;
+    }
+
+    .hero-panel {
+      padding: 24px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.07));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-panel h3 {
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .hero-panel p {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.96rem;
+    }
+
+    .hero-panel-list {
+      list-style: none;
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-panel-list li {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.94rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card,
+    .program-card,
+    .stat-card,
+    .news-card,
+    .agenda-card,
+    .contact-card {
+      padding: 24px;
+    }
+
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(15,111,255,0.12), rgba(50,197,255,0.12));
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .feature-card h3,
+    .program-card h3,
+    .news-card h3,
+    .agenda-card h3,
+    .contact-card h3 {
+      margin-bottom: 10px;
+      color: #102033;
+      font-size: 1.12rem;
+    }
+
+    .feature-card p,
+    .program-card p,
+    .news-card p,
+    .agenda-card p,
+    .contact-card p,
+    .stat-card p {
+      color: var(--text-soft);
+    }
+
+    .program-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(15, 111, 255, 0.1);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .stats-band {
+      background: linear-gradient(135deg, #0f6fff, #32c5ff);
+      border-radius: 32px;
+      padding: 26px;
+      box-shadow: 0 28px 60px rgba(15, 111, 255, 0.22);
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .stat-card h3 {
+      font-size: 2rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-card p {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .news-card {
+      padding: 14px;
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 18px;
+    }
+
+    .news-inner {
+      padding: 0 10px 10px;
+    }
+
+    .meta {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .agenda-card {
+      border: 1px solid rgba(15, 111, 255, 0.08);
+    }
+
+    .agenda-date {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #0f6fff, #32c5ff);
+      color: white;
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 18px;
+      text-align: center;
+      line-height: 1.1;
+      flex-direction: column;
+    }
+
+    .agenda-date small {
+      font-size: 0.72rem;
+      opacity: 0.85;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+    }
+
+    .contact-card {
+      padding: 30px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-list li {
+      padding: 14px 16px;
+      background: #f4f8fc;
+      border-radius: 16px;
+      color: var(--text-soft);
+    }
+
+    .contact-list strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .map-frame {
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .site-footer {
+      background: #09121f;
+      color: rgba(255, 255, 255, 0.72);
+      padding: 34px 0;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .contact-grid,
+      .grid-4,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-wrap {
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 56px 0 82px;
+      }
+
+      .hero-copy h1 {
+        font-size: 2.5rem;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .footer-wrap {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero-copy h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero-actions,
+      .nav-menu {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn,
+      .nav-cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="brand">
+        <div class="brand-badge">LOGO</div>
+        <div class="brand-text">
+          <strong>HIMO MOJOKERTO RAYA</strong>
+          <span>The Spirit Of Majapahit Greatness</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#berita">Berita</a></li>
+          <li><a href="#agenda">Agenda</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <a href="#kontak" class="nav-cta">Hubungi Kami</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="badge">Website Resmi Organisasi</div>
+          <h1>HIMO MOJOERTO RAYA</h1>
+          <p>
+            Tampilkan profil organisasi, program unggulan, berita, agenda kegiatan,
+            dan informasi kontak dalam satu website yang profesional, responsif,
+            dan mudah dikembangkan.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#program" class="btn btn-primary">Lihat Program</a>
+            <a href="#berita" class="btn btn-secondary">Berita Terbaru</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="mini-stat">
+              <strong>48</strong>
+              <span>Anggota aktif</span>
+            </div>
+            <div class="mini-stat">
+              <strong>20</strong>
+              <span>Kegiatan tahunan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <h3>Siap dipakai untuk organisasi kamu</h3>
+          <p>
+            Tinggal ganti logo, teks, menu, statistik, kontak, dan tentu saja foto background hero dengan dokumentasi organisasi kamu sendiri.
+          </p>
+          <ul class="hero-panel-list">
+            <li>Profil organisasi dan visi misi</li>
+            <li>Program kerja dan layanan</li>
+            <li>Berita dan agenda kegiatan</li>
+            <li>Kontak, media sosial, dan lokasi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tentang">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Tentang</span>
+          <h2>Struktur Halaman yang Bersih dan Profesional</h2>
+          <p>
+            Bagian ini cocok untuk memperkenalkan organisasi, menjelaskan fokus kerja,
+            dan memudahkan pengunjung memahami fungsi utama website.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="card feature-card">
+            <div class="icon-box">01</div>
+            <h3>Profil Organisasi</h3>
+            <p>Jelaskan sejarah singkat, visi, misi, dan identitas utama organisasi kamu.</p>
+          </article>
+
+          <article class="card feature-card">
+            <div class="icon-box">02</div>
+            <h3>Program Utama</h3>
+            <p>Tampilkan kegiatan inti, layanan, atau divisi yang menjadi fokus organisasi.</p>
+          </article>
+
+          <article class="card feature-card">
+            <div class="icon-box">03</div>
+            <h3>Informasi Terbaru</h3>
+            <p>Publikasikan berita, pengumuman, dan update kegiatan terbaru secara rutin.</p>
+          </article>
+
+          <article class="card feature-card">
+            <div class="icon-box">04</div>
+            <h3>Kontak Cepat</h3>
+            <p>Sediakan informasi admin, alamat, email, dan sosial media yang mudah diakses.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="program">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Program</span>
+          <h2>Program Unggulan Organisasi</h2>
+          <p>
+            Ubah isi bagian ini sesuai kegiatan nyata organisasimu, misalnya pendidikan,
+            sosial, advokasi, pelatihan, kemitraan, atau pengembangan komunitas.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card program-card">
+            <span class="program-tag">Program 01</span>
+            <h3>Pelatihan dan Pengembangan</h3>
+            <p>
+              Cocok untuk workshop, mentoring, pelatihan anggota, seminar, atau kelas penguatan kapasitas.
+            </p>
+          </article>
+
+          <article class="card program-card">
+            <span class="program-tag">Program 02</span>
+            <h3>Kegiatan Sosial dan Pengabdian</h3>
+            <p>
+              Tampilkan kegiatan kemanusiaan, pengabdian masyarakat, bantuan sosial, atau pemberdayaan komunitas.
+            </p>
+          </article>
+
+          <article class="card program-card">
+            <span class="program-tag">Program 03</span>
+            <h3>Kolaborasi dan Kemitraan</h3>
+            <p>
+              Bagian ini bisa berisi kerja sama dengan sekolah, komunitas, sponsor, lembaga, atau pemerintah.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Statistik</span>
+          <h2>Angka yang Menunjukkan Dampak</h2>
+          <p>
+            Ganti seluruh angka berikut dengan data organisasi kamu supaya terasa lebih kredibel dan hidup.
+          </p>
+        </div>
+
+        <div class="stats-band">
+          <div class="grid-4">
+            <article class="stat-card card">
+              <h3>500+</h3>
+              <p>Anggota aktif</p>
+            </article>
+            <article class="stat-card card">
+              <h3>120+</h3>
+              <p>Penerima manfaat</p>
+            </article>
+            <article class="stat-card card">
+              <h3>40+</h3>
+              <p>Kegiatan berjalan</p>
+            </article>
+            <article class="stat-card card">
+              <h3>10</h3>
+              <p>Tahun berdiri</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="berita">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Berita</span>
+          <h2>Berita dan Publikasi Terbaru</h2>
+          <p>
+            Bagian ini bisa kamu hubungkan ke CMS, blog, atau isi manual terlebih dahulu saat masih tahap awal.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card news-card">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80" alt="Berita organisasi" />
+            <div class="news-inner">
+              <span class="meta">27 Maret 2026</span>
+              <h3>Pelatihan Kepemimpinan untuk Anggota Baru</h3>
+              <p>Organisasi menyelenggarakan pelatihan untuk memperkuat kapasitas anggota dan struktur kepemimpinan internal.</p>
+            </div>
+          </article>
+
+          <article class="card news-card">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Kolaborasi organisasi" />
+            <div class="news-inner">
+              <span class="meta">24 Maret 2026</span>
+              <h3>Kolaborasi dengan Komunitas dan Mitra Lokal</h3>
+              <p>Program kolaborasi baru diluncurkan untuk memperluas jangkauan kegiatan dan dampak organisasi.</p>
+            </div>
+          </article>
+
+          <article class="card news-card">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Program organisasi" />
+            <div class="news-inner">
+              <span class="meta">20 Maret 2026</span>
+              <h3>Peluncuran Program Strategis Tahun Ini</h3>
+              <p>Website ini juga bisa menampilkan berita utama organisasi dengan desain yang lebih modern dan meyakinkan.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="agenda">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Agenda</span>
+          <h2>Agenda Kegiatan Mendatang</h2>
+          <p>
+            Cocok untuk seminar, rapat, pelatihan, pengabdian, pengumuman pendaftaran, dan event organisasi.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card agenda-card">
+            <div class="agenda-date">05<small>Apr</small></div>
+            <h3>Seminar Organisasi</h3>
+            <p>Lokasi: Aula Utama</p>
+            <p>Waktu: 09.00 WIB</p>
+          </article>
+
+          <article class="card agenda-card">
+            <div class="agenda-date">12<small>Apr</small></div>
+            <h3>Bakti Sosial Komunitas</h3>
+            <p>Lokasi: Wilayah Binaan</p>
+            <p>Waktu: 08.00 WIB</p>
+          </article>
+
+          <article class="card agenda-card">
+            <div class="agenda-date">20<small>Apr</small></div>
+            <h3>Rapat Koordinasi Bulanan</h3>
+            <p>Lokasi: Sekretariat Organisasi</p>
+            <p>Waktu: 19.00 WIB</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow">Kontak</span>
+          <h2>Hubungi Organisasi Kamu dengan Mudah</h2>
+          <p>
+            Ubah data berikut menjadi alamat, nomor admin, email resmi, dan lokasi organisasi kamu.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <article class="card contact-card">
+            <h3>Informasi Kontak</h3>
+            <p>Bagian ini bisa kamu isi dengan informasi admin, sekretariat, media sosial, atau form pendaftaran.</p>
+
+            <ul class="contact-list">
+              <li>
+                <strong>Nama Organisasi</strong>
+                Organisasi Kamu
+              </li>
+              <li>
+                <strong>Alamat</strong>
+                Jl. Contoh No. 123, Kota Kamu
+              </li>
+              <li>
+                <strong>Email</strong>
+                organisasi@email.com
+              </li>
+              <li>
+                <strong>WhatsApp</strong>
+                08xxxxxxxxxx
+              </li>
+              <li>
+                <strong>Instagram</strong>
+                @namaorganisasi
+              </li>
+            </ul>
+          </article>
+
+          <div>
+            <iframe
+              class="map-frame"
+              src="https://www.google.com/maps?q=Jakarta&output=embed"
+              loading="lazy"
+              allowfullscreen
+              title="Lokasi organisasi"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>Copyright 2026 © Nama Organisasi. All Rights Reserved.</p>
+      <div class="footer-social">
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+        <a href="#">YT</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
