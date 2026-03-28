@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nama Organisasi</title>
+  <title>HIMO Mojokerto Raya</title>
   <meta
     name="description"
-    content="Website resmi organisasi modern untuk profil, program, berita, agenda, dan kontak."
+    content="Website resmi HIMO Mojokerto Raya untuk profil, program, berita, agenda, dan kontak."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,17 +16,20 @@
   />
   <style>
     :root {
-      --bg: #08111f;
+      --bg-dark: #08111f;
+      --bg-dark-2: #0b1524;
       --card: #ffffff;
       --text: #102033;
-      --text-soft: #5f6f85;
+      --text-soft: #617089;
       --white: #ffffff;
       --primary: #0f6fff;
       --primary-2: #32c5ff;
       --accent: #ffd166;
       --line: rgba(255, 255, 255, 0.12);
-      --shadow: 0 20px 60px rgba(2, 12, 27, 0.18);
+      --line-soft: rgba(16, 32, 51, 0.08);
+      --shadow: 0 20px 60px rgba(2, 12, 27, 0.14);
       --radius: 24px;
+      --radius-sm: 18px;
       --max-width: 1180px;
     }
 
@@ -42,10 +45,10 @@
 
     body {
       font-family: "Plus Jakarta Sans", sans-serif;
-      background:
-        linear-gradient(180deg, #08111f 0%, #0b1524 38%, #eef4fb 38%, #f6f9fc 100%);
       color: var(--text);
       line-height: 1.6;
+      background:
+        linear-gradient(180deg, #08111f 0%, #0b1524 34%, #eef4fb 34%, #f7f9fc 100%);
     }
 
     img {
@@ -68,7 +71,7 @@
     }
 
     .section-title {
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto 42px;
       text-align: center;
     }
@@ -80,15 +83,15 @@
       border-radius: 999px;
       background: rgba(15, 111, 255, 0.1);
       color: var(--primary);
-      font-size: 0.85rem;
-      font-weight: 700;
+      font-size: 0.82rem;
+      font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .section-title h2 {
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
       margin-bottom: 12px;
       color: #0d1b2d;
     }
@@ -101,37 +104,40 @@
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       backdrop-filter: blur(18px);
-      background: rgba(8, 17, 31, 0.74);
+      background: rgba(8, 17, 31, 0.76);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .nav-wrap {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       min-height: 78px;
-      gap: 20px;
+      gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 14px;
+      min-width: 0;
     }
 
-    .brand-badge {
+    .brand-logo {
       width: 50px;
       height: 50px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--accent), #fff2b8);
-      color: #0d1b2d;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: 0.9rem;
-      box-shadow: 0 14px 30px rgba(255, 209, 102, 0.25);
+      object-fit: contain;
+      border-radius: 16px;
+      background: white;
+      padding: 5px;
+      box-shadow: 0 12px 30px rgba(255, 209, 102, 0.18);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      min-width: 0;
     }
 
     .brand-text strong {
@@ -142,19 +148,25 @@
     }
 
     .brand-text span {
+      display: block;
       color: rgba(255, 255, 255, 0.68);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .nav-menu {
       display: flex;
-      gap: 24px;
       list-style: none;
+      gap: 24px;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .nav-menu a {
-      color: rgba(255, 255, 255, 0.82);
+      color: rgba(255, 255, 255, 0.84);
       font-weight: 500;
       transition: 0.2s ease;
     }
@@ -164,20 +176,25 @@
     }
 
     .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 18px;
       border-radius: 999px;
       background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: white;
       font-weight: 700;
-      box-shadow: 0 16px 36px rgba(15, 111, 255, 0.28);
+      box-shadow: 0 16px 36px rgba(15, 111, 255, 0.26);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .hero {
       position: relative;
-      padding: 72px 0 110px;
       color: white;
+      padding: 76px 0 108px;
       background:
-        linear-gradient(135deg, rgba(8, 17, 31, 0.78), rgba(15, 111, 255, 0.38)),
+        linear-gradient(135deg, rgba(8, 17, 31, 0.8), rgba(15, 111, 255, 0.34)),
         url("https://raw.githubusercontent.com/brehnatasurya-cmd/himomjktraya/main/WhatsApp%20Image%202026-03-27%20at%2016.27.16.jpeg") center/cover no-repeat;
       overflow: hidden;
     }
@@ -186,7 +203,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 60%);
+      background: radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 58%);
       pointer-events: none;
     }
 
@@ -197,7 +214,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.18fr 0.82fr;
       gap: 28px;
       align-items: center;
     }
@@ -212,35 +229,34 @@
       border: 1px solid var(--line);
       margin-bottom: 22px;
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.86);
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .hero-copy h1 {
-      font-size: clamp(2.8rem, 5vw, 5rem);
-      line-height: 0.98;
-      margin-bottom: 20px;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.96;
+      margin-bottom: 18px;
       letter-spacing: -0.04em;
     }
 
     .hero-copy p {
       max-width: 640px;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 1.06rem;
-      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 1.04rem;
+      margin-bottom: 28px;
     }
 
     .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 34px;
+      margin-bottom: 32px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       padding: 14px 22px;
       border-radius: 999px;
       font-weight: 700;
@@ -265,9 +281,9 @@
 
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
-      max-width: 700px;
+      max-width: 460px;
     }
 
     .mini-stat {
@@ -280,12 +296,12 @@
 
     .mini-stat strong {
       display: block;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-bottom: 4px;
     }
 
     .mini-stat span {
-      color: rgba(255, 255, 255, 0.76);
+      color: rgba(255, 255, 255, 0.78);
       font-size: 0.92rem;
     }
 
@@ -304,7 +320,7 @@
     }
 
     .hero-panel p {
-      color: rgba(255, 255, 255, 0.78);
+      color: rgba(255, 255, 255, 0.8);
       font-size: 0.96rem;
     }
 
@@ -320,7 +336,7 @@
       border-radius: 16px;
       background: rgba(255, 255, 255, 0.08);
       font-size: 0.94rem;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.92);
     }
 
     .grid-3,
@@ -330,11 +346,11 @@
     }
 
     .grid-3 {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .grid-4 {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .card {
@@ -388,6 +404,10 @@
       color: var(--text-soft);
     }
 
+    .program-card {
+      border: 1px solid var(--line-soft);
+    }
+
     .program-tag {
       display: inline-block;
       margin-bottom: 14px;
@@ -419,7 +439,7 @@
     }
 
     .stat-card p {
-      color: rgba(255, 255, 255, 0.82);
+      color: rgba(255, 255, 255, 0.84);
     }
 
     .news-card {
@@ -447,7 +467,7 @@
     }
 
     .agenda-card {
-      border: 1px solid rgba(15, 111, 255, 0.08);
+      border: 1px solid var(--line-soft);
     }
 
     .agenda-date {
@@ -469,7 +489,7 @@
 
     .agenda-date small {
       font-size: 0.72rem;
-      opacity: 0.85;
+      opacity: 0.86;
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
@@ -545,40 +565,65 @@
       font-weight: 700;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       .hero-grid,
       .contact-grid,
-      .grid-4,
-      .grid-3 {
+      .grid-4 {
         grid-template-columns: 1fr;
       }
 
-      .hero-stats {
-        grid-template-columns: 1fr;
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-panel {
+        max-width: 640px;
       }
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 860px) {
       .nav-wrap {
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
         padding: 14px 0;
       }
 
-      .nav-menu {
-        flex-wrap: wrap;
+      .brand {
+        width: 100%;
         justify-content: center;
       }
 
+      .nav-menu {
+        width: 100%;
+        gap: 16px;
+      }
+
       .hero {
-        padding: 56px 0 82px;
+        padding: 58px 0 82px;
       }
 
-      .hero-copy h1 {
-        font-size: 2.5rem;
+      .hero-copy {
+        text-align: center;
       }
 
-      .section {
-        padding: 72px 0;
+      .hero-copy p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions,
+      .hero-stats {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-panel {
+        margin: 0 auto;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
       }
 
       .footer-wrap {
@@ -588,19 +633,31 @@
     }
 
     @media (max-width: 560px) {
-      .hero-copy h1 {
-        font-size: 2.1rem;
+      .section {
+        padding: 72px 0;
       }
 
-      .hero-actions,
-      .nav-menu {
+      .hero-copy h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-actions {
         flex-direction: column;
-        width: 100%;
       }
 
       .btn,
       .nav-cta {
         width: 100%;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .brand-text span {
+        white-space: normal;
+        text-align: center;
       }
     }
   </style>
@@ -609,7 +666,11 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a href="#" class="brand">
-        <div <img src="https://raw.githubusercontent.com/brehnatasurya-cmd/himomjktraya/main/Logo%20Himo%20Mojokerto.PNG" alt="Logo" class="brand-logo">
+        <img
+          src="https://raw.githubusercontent.com/brehnatasurya-cmd/himomjktraya/main/Logo%20Himo%20Mojokerto.PNG"
+          alt="Logo HIMO Mojokerto Raya"
+          class="brand-logo"
+        />
         <div class="brand-text">
           <strong>HIMO MOJOKERTO RAYA</strong>
           <span>The Spirit Of Majapahit Greatness</span>
@@ -635,11 +696,11 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="badge">Website Resmi Organisasi</div>
-          <h1>HIMO MOJOERTO RAYA</h1>
+          <h1>HIMO MOJOKERTO RAYA</h1>
           <p>
             Tampilkan profil organisasi, program unggulan, berita, agenda kegiatan,
             dan informasi kontak dalam satu website yang profesional, responsif,
-            dan mudah dikembangkan.
+            dan lebih nyaman dibuka di HP maupun laptop.
           </p>
 
           <div class="hero-actions">
@@ -662,7 +723,8 @@
         <div class="hero-panel">
           <h3>Siap dipakai untuk organisasi kamu</h3>
           <p>
-            Tinggal ganti logo, teks, menu, statistik, kontak, dan tentu saja foto background hero dengan dokumentasi organisasi kamu sendiri.
+            Tinggal ganti teks, menu, statistik, kontak, dan isi konten sesuai kebutuhan
+            HIMO Mojokerto Raya.
           </p>
           <ul class="hero-panel-list">
             <li>Profil organisasi dan visi misi</li>
@@ -765,20 +827,20 @@
         <div class="stats-band">
           <div class="grid-4">
             <article class="stat-card card">
-              <h3>500+</h3>
+              <h3>48</h3>
               <p>Anggota aktif</p>
             </article>
             <article class="stat-card card">
-              <h3>120+</h3>
-              <p>Penerima manfaat</p>
+              <h3>20</h3>
+              <p>Kegiatan tahunan</p>
             </article>
             <article class="stat-card card">
-              <h3>40+</h3>
-              <p>Kegiatan berjalan</p>
+              <h3>1</h3>
+              <p>Organisasi daerah</p>
             </article>
             <article class="stat-card card">
-              <h3>10</h3>
-              <p>Tahun berdiri</p>
+              <h3>2026</h3>
+              <p>Periode aktif</p>
             </article>
           </div>
         </div>
@@ -879,11 +941,11 @@
             <ul class="contact-list">
               <li>
                 <strong>Nama Organisasi</strong>
-                Organisasi Kamu
+                HIMO Mojokerto Raya
               </li>
               <li>
                 <strong>Alamat</strong>
-                Jl. Contoh No. 123, Kota Kamu
+                Mojokerto Raya
               </li>
               <li>
                 <strong>Email</strong>
@@ -903,7 +965,7 @@
           <div>
             <iframe
               class="map-frame"
-              src="https://www.google.com/maps?q=Jakarta&output=embed"
+              src="https://www.google.com/maps?q=Mojokerto&output=embed"
               loading="lazy"
               allowfullscreen
               title="Lokasi organisasi"
@@ -916,7 +978,7 @@
 
   <footer class="site-footer">
     <div class="container footer-wrap">
-      <p>Copyright 2026 © Nama Organisasi. All Rights Reserved.</p>
+      <p>Copyright 2026 © HIMO Mojokerto Raya. All Rights Reserved.</p>
       <div class="footer-social">
         <a href="#">IG</a>
         <a href="#">FB</a>
