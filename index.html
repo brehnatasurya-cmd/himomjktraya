@@ -14,6 +14,11 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
+   <!-- Font Awesome -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
   <style>
     :root {
       --bg-dark: #08111f;
@@ -659,6 +664,27 @@
         white-space: normal;
         text-align: center;
       }
+
+      .footer-social a {
+        font-size: 18px;
+        transition: 0.3s;
+      }
+      
+      .footer-social a:hover {
+        transform: translateY(-3px);
+      }
+      
+      .footer-social a:nth-child(1):hover {
+        background: #E1306C;
+      }
+      
+      .footer-social a:nth-child(2):hover {
+        background: #000000;
+      }
+      
+      .footer-social a:nth-child(3):hover {
+        background: #FF0000;
+      }
     }
   </style>
 </head>
@@ -965,7 +991,7 @@
           <div>
             <iframe
               class="map-frame"
-              src="https://www.google.com/maps/place/Cabang+Dinas+Pendidikan+Kabupaten+dan+Kota+Mojokerto/@-7.4590952,112.4359449,802m/data=!3m1!1e3!4m6!3m5!1s0x2e780df15d66ce11:0x6d8646c139bd56ec!8m2!3d-7.4592095!4d112.4365218!16s%2Fg%2F11f159l5zr?entry=ttu&g_ep=EgoyMDI2MDMyOS4wIKXMDSoASAFQAw%3D%3D"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3492.4544729665495!2d112.43394687438895!3d-7.459209492552187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e780df15d66ce11%3A0x6d8646c139bd56ec!2sCabang%20Dinas%20Pendidikan%20Kabupaten%20dan%20Kota%20Mojokerto!5e1!3m2!1sen!2sid!4v1775617259354!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
               loading="lazy"
               allowfullscreen
               title="Lokasi organisasi"
@@ -980,9 +1006,15 @@
     <div class="container footer-wrap">
       <p>Copyright 2026 © HIMO Mojokerto Raya. All Rights Reserved.</p>
       <div class="footer-social">
-        <a href="https://www.instagram.com/himomjkt?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
-        <a href="https://www.tiktok.com/@himomojokerto?is_from_webapp=1&sender_device=pc">Tiktok</a>
-        <a href="https://youtube.com/@himomojokertoraya?si=M54oAf7vvkIoZMvo">YouTube</a>
+        <a href="https://www.instagram.com/himomjkt" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@himomojokerto" target="_blank">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://youtube.com/@himomojokertoraya" target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a>
       </div>
     </div>
   </footer>
