@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linktree HIMO MOJOKERTO RAYA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #002fff 0%, #8a89e0 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid white;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .bio {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .link-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid white;
+            border-radius: 25px;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .link-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/brehnatasurya-cmd/himomjktraya/main/Logo%20Himo%20Mojokerto.PNG" alt="Avatar" class="avatar"> <!-- Ganti dengan URL gambar avatar Anda -->
+        <h1>HIMO MOJOKERTO RAYA</h1> <!-- Ganti dengan nama Anda -->
+        <p class="bio">All About Us!!</p> <!-- Ganti dengan bio Anda -->
+        
+        <div class="links">
+            <a href="https://www.instagram.com/himomjkt?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="link-btn" onclick="handleClick('Instagram')">Instagram</a> <!-- Ganti href dengan link asli -->
+            <a href="https://www.tiktok.com/@himomojokerto?is_from_webapp=1&sender_device=pc" class="link-btn" onclick="handleClick('Tiktok')">Tiktok</a>
+            <a href="https://youtube.com/@himomojokertoraya?si=igmOws0BUC4EVGZc" class="link-btn" onclick="handleClick('YouTube')">YouTube</a>
+            <!-- Tambahkan lebih banyak link sesuai kebutuhan -->
+        </div>
+        
+        <footer>
+            Create by HIMO MOJOKERTO RAYA
+        </footer>
+    </div>
+
+    <script>
+        function handleClick(platform) {
+            alert(`Mengarahkan ke ${platform}...`); // Ganti dengan window.location.href = link; untuk redirect langsung
+        }
+    </script>
+</body>
+</html>
