@@ -19,6 +19,7 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
     :root {
       --bg-dark: #08111f;
@@ -208,7 +209,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgb(134, 134, 134), transparent 58%);
+      background: radial-gradient(circle at center, rgba(134, 134, 134, 0.573), transparent 58%);
       pointer-events: none;
     }
 
@@ -375,19 +376,88 @@
 
     .feature-card {
       position: relative;
+      min-height: 254px;
+      padding: 15px;
+      border-radius: 10px;
       overflow: hidden;
+      background: #f5f5f5;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
-    .icon-box {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, rgba(15,111,255,0.12), rgba(50,197,255,0.12));
-      color: var(--primary);
-      font-weight: 800;
+    .feature-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .feature-card-image {
+      width: 100%;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(15,111,255,0.12), rgba(255,209,102,0.28));
+      color: #0d1b2d;
+      font-size: 4em;
+      font-weight: 900;
+      line-height: 1;
+      transition: height 0.3s ease;
+    }
+
+    .feature-content {
+      width: 100%;
+      text-align: center;
+    }
+
+    .feature-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 6px 12px;
+      border-radius: 15px;
+      background-color: greenyellow;
+      color: rgb(0, 0, 0);
+      font-size: 0.75em;
+      font-weight: 700;
+    }
+
+    .feature-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 40px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 40px;
+      background-color: rgb(24, 24, 24);
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease, color 0.3s ease, margin-top 0.3s ease;
+    }
+
+    .feature-card:hover {
+      background-color: white;
+      transform: translateY(-4px);
+    }
+
+    .feature-card:hover .feature-card-image {
+      height: 92px;
+    }
+
+    .feature-card:hover .feature-btn {
+      margin-top: 0;
+    }
+
+    .feature-btn:hover {
+      background-color: greenyellow;
+      color: rgb(35, 35, 35);
     }
 
     .feature-card h3,
@@ -719,7 +789,7 @@
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy">
+        <div class="hero-copy" data-aos="fade-right">
           <div class="badge">Website Resmi Organisasi</div>
           <h1>HIMO MOJOKERTO RAYA</h1>
           <p>
@@ -743,7 +813,7 @@
           </div>
         </div>
 
-        <aside class="hero-panel" aria-label="Ringkasan HIMO Mojokerto Raya">
+        <aside class="hero-panel" aria-label="Ringkasan HIMO Mojokerto Raya" data-aos="fade-left" data-aos-delay="180">
           <h3>Ruang Kolaborasi OSIS Mojokerto Raya</h3>
           <p>
             Menjadi wadah koordinasi, pengembangan kepemimpinan, dan gerakan positif
@@ -760,7 +830,7 @@
 
     <section class="section" id="tentang">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Tentang</span>
           <h2>Mengenal HIMO Mojokerto Raya</h2>
           <p>
@@ -770,28 +840,52 @@
         </div>
 
         <div class="grid-4">
-          <article class="card feature-card">
-            <div class="icon-box">01</div>
-            <h3>Profil Organisasi</h3>
-            <p>Kenali identitas, peran, dan fungsi HIMO Mojokerto Raya.</p>
+          <article class="card feature-card" data-aos="zoom-in" data-aos-delay="0">
+            <div class="feature-wrapper">
+              <div class="feature-card-image">01</div>
+              <div class="feature-content">
+                <h3>Profil Organisasi</h3>
+                <p>Kenali identitas, peran, dan fungsi HIMO Mojokerto Raya.</p>
+              </div>
+              <a href="abouthimo.html" class="feature-btn">PELAJARI</a>
+            </div>
+            <p class="feature-tag">Profil</p>
           </article>
 
-          <article class="card feature-card">
-            <div class="icon-box">02</div>
-            <h3>Sejarah HIMO Mojokerto Raya</h3>
-            <p>Setiap langkah memiliki cerita. Kenali perjalanan dan perkembangan organisasi kami.</p>
+          <article class="card feature-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="feature-wrapper">
+              <div class="feature-card-image">02</div>
+              <div class="feature-content">
+                <h3>Sejarah HIMO Mojokerto Raya</h3>
+                <p>Setiap langkah memiliki cerita. Kenali perjalanan dan perkembangan organisasi kami.</p>
+              </div>
+              <a href="abouthimo.html" class="feature-btn">PELAJARI</a>
+            </div>
+            <p class="feature-tag">Sejarah</p>
           </article>
 
-          <article class="card feature-card">
-            <div class="icon-box">03</div>
-            <h3>Visi Misi HIMO Mojokerto Raya</h3>
-            <p>Pahami arah dan tujuan HIMO Mojokerto Raya.</p>
+          <article class="card feature-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="feature-wrapper">
+              <div class="feature-card-image">03</div>
+              <div class="feature-content">
+                <h3>Visi Misi HIMO Mojokerto Raya</h3>
+                <p>Pahami arah dan tujuan HIMO Mojokerto Raya.</p>
+              </div>
+              <a href="abouthimo.html" class="feature-btn">PELAJARI</a>
+            </div>
+            <p class="feature-tag">Visi Misi</p>
           </article>
 
-          <article class="card feature-card">
-            <div class="icon-box">04</div>
-            <h3>Struktur HIMO Mojokerto Raya</h3>
-            <p>Kenali pengurus HIMO Mojokerto Raya.</p>
+          <article class="card feature-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="feature-wrapper">
+              <div class="feature-card-image">04</div>
+              <div class="feature-content">
+                <h3>Struktur HIMO Mojokerto Raya</h3>
+                <p>Kenali pengurus HIMO Mojokerto Raya.</p>
+              </div>
+              <a href="abouthimo.html" class="feature-btn">PELAJARI</a>
+            </div>
+            <p class="feature-tag">Struktur</p>
           </article>
         </div>
       </div>
@@ -799,7 +893,7 @@
 
     <section class="section" id="program">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Program</span>
           <h2>Program Utama HIMO</h2>
           <p>
@@ -809,19 +903,19 @@
         </div>
 
         <div class="grid-3">
-          <article class="card program-card">
+          <article class="card program-card" data-aos="fade-up" data-aos-delay="0">
             <span class="program-tag">Koordinasi</span>
             <h3>Rapat Koordinasi</h3>
             <p>Forum penyelarasan ide, agenda, dan kolaborasi antar perwakilan OSIS.</p>
           </article>
 
-          <article class="card program-card">
+          <article class="card program-card" data-aos="fade-up" data-aos-delay="120">
             <span class="program-tag">Sosial</span>
             <h3>HIMO Bersinar</h3>
             <p>Program bakti sosial untuk membangun kepedulian pelajar terhadap masyarakat.</p>
           </article>
 
-          <article class="card program-card">
+          <article class="card program-card" data-aos="fade-up" data-aos-delay="240">
             <span class="program-tag">Lingkungan</span>
             <h3>HIMO Clean Up Day</h3>
             <p>Gerakan kerja bakti dan aksi lingkungan sebagai wujud pelajar peduli sekitar.</p>
@@ -832,29 +926,29 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Statistik</span>
           <h2>Data Organisasi</h2>
           <p>
           </p>
         </div>
 
-        <div class="stats-band">
+        <div class="stats-band" data-aos="zoom-in">
           <div class="grid-4">
-            <article class="stat-card card">
-              <h3>48</h3>
+            <article class="stat-card card" data-aos="fade-up" data-aos-delay="0">
+              <h3 class="count-up" data-count="48">48</h3>
               <p>Anggota Aktif</p>
             </article>
-            <article class="stat-card card">
-              <h3>7</h3>
+            <article class="stat-card card" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="count-up" data-count="7">7</h3>
               <p>Departemen</p>
             </article>
-            <article class="stat-card card">
-              <h3>21</h3>
+            <article class="stat-card card" data-aos="fade-up" data-aos-delay="200">
+              <h3 class="count-up" data-count="21">21</h3>
               <p>Program Tahunan</p>
             </article>
-            <article class="stat-card card">
-              <h3>2026/2027</h3>
+            <article class="stat-card card" data-aos="fade-up" data-aos-delay="300">
+              <h3><span class="count-up" data-count="2026">2026</span>/2027</h3>
               <p>Periode aktif</p>
             </article>
           </div>
@@ -864,7 +958,7 @@
 
     <section class="section" id="berita">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Berita</span>
           <h2>Berita dan Publikasi Terbaru</h2>
           <p>
@@ -872,7 +966,7 @@
         </div>
 
         <div class="grid-3">
-          <article class="card news-card">
+          <article class="card news-card" data-aos="fade-up" data-aos-delay="0">
             <img src="Rakoor.png" alt="Berita organisasi" />
             <div class="news-inner">
               <span class="meta">23 Mei 2026</span>
@@ -881,7 +975,7 @@
             </div>
           </article>
 
-          <article class="card news-card">
+          <article class="card news-card" data-aos="fade-up" data-aos-delay="120">
             <img src="Bersinar.png" alt="Kolaborasi organisasi" />
             <div class="news-inner">
               <span class="meta">24 Maret 2026</span>
@@ -890,7 +984,7 @@
             </div>
           </article>
 
-          <article class="card news-card">
+          <article class="card news-card" data-aos="fade-up" data-aos-delay="240">
             <img src="https://raw.githubusercontent.com/brehnatasurya-cmd/himomjktraya/main/IMG_4010.jpg" alt="Program organisasi" />
             <div class="news-inner">
               <span class="meta">23 Mei 2026</span>
@@ -904,13 +998,13 @@
 
     <section class="section" id="kontak">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Kontak</span>
           <h2>Hubungi Kami dengan Mudah</h2>
         </div>
 
         <div class="contact-grid">
-          <article class="card contact-card">
+          <article class="card contact-card" data-aos="fade-right">
             <h3>Informasi Kontak</h3>
             <p>Halaman ini berisi informasi kontak resmi HIMO Mojokerto Raya yang dapat digunakan untuk menjalin komunikasi, kerja sama, maupun penyampaian aspirasi. Silakan hubungi kami melalui kontak yang tersedia.</p>
 
@@ -934,7 +1028,7 @@
             </ul>
           </article>
 
-          <div>
+          <div data-aos="fade-left" data-aos-delay="160">
             <iframe
               class="map-frame"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3492.4544729665495!2d112.43394687438895!3d-7.459209492552187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e780df15d66ce11%3A0x6d8646c139bd56ec!2sCabang%20Dinas%20Pendidikan%20Kabupaten%20dan%20Kota%20Mojokerto!5e1!3m2!1sen!2sid!4v1775617259354!5m2!1sen!2sid"
@@ -968,5 +1062,52 @@
       </div>
     </div>
   </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    if (window.AOS) {
+      AOS.init({
+        duration: 900,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 90
+      });
+    }
+
+    const countUpItems = document.querySelectorAll(".count-up");
+
+    const animateCountUp = (item) => {
+      const target = Number(item.dataset.count);
+      const duration = 1600;
+      const startTime = performance.now();
+
+      const updateCount = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.floor(easedProgress * target);
+
+        item.textContent = currentValue.toLocaleString("id-ID");
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCount);
+        } else {
+          item.textContent = target.toLocaleString("id-ID");
+        }
+      };
+
+      requestAnimationFrame(updateCount);
+    };
+
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCountUp(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.45 });
+
+    countUpItems.forEach((item) => countObserver.observe(item));
+  </script>
 </body>
 </html>
