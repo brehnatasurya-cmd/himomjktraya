@@ -4,24 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tentang HIMO Mojokerto Raya</title>
-  <meta name="description" content="Profil, sejarah, visi misi, dan struktur HIMO Mojokerto Raya." />
+  <meta
+    name="description"
+    content="Profil, sejarah, visi misi, dan struktur HIMO Mojokerto Raya."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
     :root {
-      --dark: #08111f;
-      --blue: #0f6fff;
-      --cyan: #32c5ff;
-      --gold: #ffd166;
+      --bg-dark: #08111f;
+      --bg-dark-2: #0b1524;
+      --card: #ffffff;
       --text: #102033;
-      --muted: #617089;
-      --soft: #f4f8fc;
-      --line: rgba(16, 32, 51, 0.1);
+      --text-soft: #617089;
+      --white: #ffffff;
+      --primary: #0f6fff;
+      --primary-2: #32c5ff;
+      --accent: #ffd166;
+      --line: rgba(255, 255, 255, 0.12);
+      --line-soft: rgba(16, 32, 51, 0.08);
       --shadow: 0 20px 60px rgba(2, 12, 27, 0.14);
       --radius: 24px;
-      --max: 1180px;
+      --max-width: 1180px;
     }
 
     * {
@@ -41,35 +54,35 @@
       background: #f7f9fc;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     img {
       display: block;
       max-width: 100%;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .container {
-      width: min(92%, var(--max));
+      width: min(92%, var(--max-width));
       margin: 0 auto;
     }
 
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(8, 17, 31, 0.86);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(16px);
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(8, 17, 31, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .nav {
-      min-height: 76px;
+    .nav-wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      min-height: 78px;
       gap: 18px;
     }
 
@@ -77,100 +90,217 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      color: white;
-      font-weight: 800;
+      min-width: 0;
     }
 
-    .brand img {
+    .brand-logo {
       width: 50px;
       height: 50px;
       object-fit: contain;
-      padding: 5px;
       border-radius: 16px;
       background: white;
+      padding: 5px;
+      box-shadow: 0 12px 30px rgba(255, 209, 102, 0.18);
+      flex-shrink: 0;
     }
 
-    .brand span {
+    .brand-text strong {
+      display: block;
+      color: white;
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    .brand-text span {
       display: block;
       color: rgba(255, 255, 255, 0.68);
       font-size: 0.86rem;
-      font-weight: 500;
     }
 
-    .menu {
+    .nav-menu {
       display: flex;
       list-style: none;
       gap: 22px;
-      color: rgba(255, 255, 255, 0.84);
-      font-weight: 700;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .menu a:hover {
+    .nav-menu a {
+      color: rgba(255, 255, 255, 0.84);
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav-menu a:hover {
       color: white;
     }
 
+    .nav-cta,
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 18px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      color: white;
       font-weight: 800;
-      box-shadow: 0 16px 36px rgba(15, 111, 255, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
     }
 
-    .hero {
+    .nav-cta {
+      padding: 12px 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
       color: white;
-      padding: 110px 0 120px;
+      box-shadow: 0 16px 36px rgba(15, 111, 255, 0.26);
+    }
+
+    .btn {
+      padding: 14px 22px;
+    }
+
+    .btn:hover,
+    .nav-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffe7a1);
+      color: #102033;
+      box-shadow: 0 18px 38px rgba(255, 209, 102, 0.24);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      color: white;
+    }
+
+    .about-hero {
+      position: relative;
+      min-height: 560px;
+      color: white;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(8, 17, 31, 0.86), rgba(15, 111, 255, 0.42)),
+        linear-gradient(135deg, rgba(8, 17, 31, 0.88), rgba(15, 111, 255, 0.42)),
         url("WhatsApp Image 2026-03-27 at 16.27.16.jpeg") center/cover no-repeat;
     }
 
-    .hero h1 {
-      max-width: 760px;
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      line-height: 1;
-      margin-bottom: 18px;
+    .about-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 78% 28%, rgba(255, 209, 102, 0.24), transparent 34%);
+      pointer-events: none;
     }
 
-    .hero p {
-      max-width: 690px;
+    .about-hero .container {
+      position: relative;
+      z-index: 1;
+      padding: 82px 0 96px;
+    }
+
+    .crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.98;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      max-width: 680px;
       color: rgba(255, 255, 255, 0.84);
-      font-size: 1.05rem;
-      margin-bottom: 28px;
+      font-size: 1.06rem;
+      margin-bottom: 30px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 14px;
     }
 
-    .btn-gold {
-      background: linear-gradient(135deg, var(--gold), #ffe7a1);
+    .quick-nav {
+      margin-top: -44px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quick-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 76px;
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
       color: var(--text);
+      font-weight: 800;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .quick-link:hover {
+      transform: translateY(-3px);
+      border-color: rgba(15, 111, 255, 0.32);
+      background: #f4f8ff;
+    }
+
+    .quick-link i {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(15, 111, 255, 0.12), rgba(255, 209, 102, 0.32));
+      color: var(--primary);
+      flex-shrink: 0;
     }
 
     .section {
-      padding: 86px 0;
+      padding: 88px 0;
     }
 
     .section-title {
       max-width: 760px;
-      margin: 0 auto 38px;
+      margin: 0 auto 42px;
       text-align: center;
     }
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       padding: 8px 14px;
       border-radius: 999px;
       background: rgba(15, 111, 255, 0.1);
-      color: var(--blue);
+      color: var(--primary);
       font-size: 0.82rem;
       font-weight: 800;
       letter-spacing: 0.08em;
@@ -181,205 +311,361 @@
       font-size: clamp(2rem, 4vw, 3rem);
       line-height: 1.08;
       margin-bottom: 12px;
+      color: #0d1b2d;
     }
 
-    .section-title p,
-    .card p {
-      color: var(--muted);
+    .section-title p {
+      color: var(--text-soft);
     }
 
-    .grid {
+    .split {
       display: grid;
-      gap: 22px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: center;
     }
 
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .card {
-      padding: 26px;
-      border-radius: var(--radius);
-      background: white;
-      border: 1px solid var(--line);
+    .image-panel {
+      min-height: 430px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(8, 17, 31, 0.08), rgba(8, 17, 31, 0.26)),
+        url("Logo Himo Mojokerto.PNG") center/contain no-repeat,
+        white;
       box-shadow: var(--shadow);
+      border: 1px solid var(--line-soft);
     }
 
-    .card h3 {
-      margin-bottom: 10px;
+    .content-panel {
+      background: white;
+      border-radius: var(--radius);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line-soft);
     }
 
-    .profile-logo {
+    .content-panel h3 {
+      font-size: 1.55rem;
+      margin-bottom: 14px;
+      color: #0d1b2d;
+    }
+
+    .content-panel p {
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .info-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .info-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f4f8fc;
+      color: var(--text-soft);
+    }
+
+    .info-list i {
+      color: var(--primary);
+      margin-top: 4px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .timeline-year {
       display: grid;
       place-items: center;
-      min-height: 330px;
+      min-height: 118px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      font-size: 1.15rem;
+      font-weight: 800;
+      box-shadow: 0 16px 36px rgba(15, 111, 255, 0.22);
+    }
+
+    .timeline-card {
+      padding: 24px;
+      border-radius: 22px;
       background: white;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line-soft);
     }
 
-    .profile-logo img {
-      max-height: 260px;
-      object-fit: contain;
+    .timeline-card h3 {
+      margin-bottom: 8px;
+      color: #0d1b2d;
     }
 
-    .vision {
-      color: white;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
+    .timeline-card p {
+      color: var(--text-soft);
     }
 
-    .vision .eyebrow {
-      background: rgba(255, 255, 255, 0.16);
-      color: white;
-    }
-
-    .vision .section-title h2,
-    .vision .section-title p {
+    .vision-band {
+      background: linear-gradient(135deg, #0f6fff, #32c5ff);
       color: white;
     }
 
-    .vision .card {
-      background: rgba(255, 255, 255, 0.13);
-      border-color: rgba(255, 255, 255, 0.18);
+    .vision-band .section-title h2,
+    .vision-band .section-title p {
       color: white;
-      box-shadow: none;
     }
 
-    .vision .card p,
-    .vision .card li {
-      color: rgba(255, 255, 255, 0.88);
+    .vision-band .eyebrow {
+      background: rgba(255, 255, 255, 0.14);
+      color: white;
     }
 
-    .vision ol {
-      padding-left: 20px;
+    .vision-grid {
       display: grid;
-      gap: 10px;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 24px;
+      align-items: start;
     }
 
-    .role-grid {
+    .vision-card,
+    .mission-card {
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .vision-card h3,
+    .mission-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.35rem;
+    }
+
+    .vision-card p,
+    .mission-card li {
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .mission-card ol {
+      display: grid;
+      gap: 12px;
+      padding-left: 22px;
+    }
+
+    .structure-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
-      margin-bottom: 28px;
     }
 
-    .role-card,
-    .department-card {
+    .role-card {
       position: relative;
-      padding: 24px;
       overflow: hidden;
+      min-height: 190px;
+      padding: 24px;
       border-radius: var(--radius);
       background: white;
-      border: 1px solid var(--line);
+      border: 1px solid var(--line-soft);
       box-shadow: var(--shadow);
     }
 
-    .role-card::before,
-    .department-card::before {
+    .role-card::before {
       content: "";
       position: absolute;
       inset: 0 0 auto;
       height: 5px;
-      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--gold));
+      background: linear-gradient(90deg, var(--primary), var(--primary-2), var(--accent));
     }
 
-    .icon {
-      width: 48px;
-      height: 48px;
+    .role-icon {
+      width: 50px;
+      height: 50px;
       display: grid;
       place-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       border-radius: 16px;
       background: #eef5ff;
-      color: var(--blue);
+      color: var(--primary);
+      font-size: 1.25rem;
     }
 
-    .photos {
+    .role-card h3 {
+      margin-bottom: 8px;
+      color: #0d1b2d;
+    }
+
+    .role-card p {
+      color: var(--text-soft);
+    }
+
+    .department-photo-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 18px;
+      gap: 24px;
+      margin-top: 28px;
     }
 
-    .photo {
-      display: grid;
-      gap: 8px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-      font-weight: 700;
+    .department-card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: white;
+      border: 1px solid var(--line-soft);
+      box-shadow: var(--shadow);
     }
 
-    .photo-box {
-      aspect-ratio: 1;
+    .department-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .department-title h3 {
+      color: #0d1b2d;
+      margin-bottom: 6px;
+      font-size: 1.18rem;
+    }
+
+    .department-title p {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+
+    .member-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15, 111, 255, 0.1);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .coordinator-card {
       display: grid;
-      place-items: center;
-      border-radius: 16px;
-      color: var(--blue);
-      font-size: 1.25rem;
-      background: linear-gradient(135deg, rgba(15, 111, 255, 0.12), rgba(255, 209, 102, 0.28));
+      grid-template-columns: 86px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 18px;
+      background: #f4f8fc;
+      margin-bottom: 18px;
+    }
+
+    .photo-slot {
+      position: relative;
       overflow: hidden;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 16px;
+      background:
+        linear-gradient(135deg, rgba(15, 111, 255, 0.12), rgba(255, 209, 102, 0.28)),
+        #eef5ff;
     }
 
-    .photo-box img {
+    .photo-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .department-grid {
+    .photo-slot.placeholder {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
+      place-items: center;
+      color: var(--primary);
+      font-size: 1.35rem;
     }
 
-    .department-card.center {
-      grid-column: 1 / -1;
-      width: min(100%, 560px);
-      justify-self: center;
+    .person-info strong {
+      display: block;
+      color: #0d1b2d;
+      margin-bottom: 3px;
     }
 
-    .department-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
+    .person-info span {
+      color: var(--text-soft);
+      font-size: 0.9rem;
     }
 
-    .count {
-      flex-shrink: 0;
-      align-self: flex-start;
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: var(--blue);
-      background: rgba(15, 111, 255, 0.1);
-      font-size: 0.82rem;
-      font-weight: 800;
-    }
-
-    .coordinator {
-      display: grid;
-      grid-template-columns: 82px 1fr;
-      gap: 14px;
-      align-items: center;
-      padding: 14px;
-      border-radius: 18px;
-      background: var(--soft);
-      margin-bottom: 18px;
-    }
-
-    .members {
+    .members-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 12px;
     }
 
+    .member-item {
+      min-width: 0;
+      text-align: center;
+    }
+
+    .member-item .photo-slot {
+      border-radius: 14px;
+      margin-bottom: 8px;
+    }
+
+    .member-item span {
+      display: block;
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .cta-section {
+      padding: 0 0 88px;
+    }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 34px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(8, 17, 31, 0.92), rgba(15, 111, 255, 0.78)),
+        url("IMG_4010.jpg") center/cover no-repeat;
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .cta-box p {
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 660px;
+    }
+
     .site-footer {
-      padding: 34px 0;
+      background: #09121f;
       color: rgba(255, 255, 255, 0.72);
-      background: var(--dark);
+      padding: 34px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .footer-wrap {
@@ -390,171 +676,341 @@
       flex-wrap: wrap;
     }
 
-    .social {
+    .footer-social {
       display: flex;
       gap: 12px;
     }
 
-    .social a {
+    .footer-social a {
       width: 42px;
       height: 42px;
       display: grid;
       place-items: center;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
       color: white;
+      font-weight: 700;
+      transition: 0.3s;
     }
 
-    @media (max-width: 900px) {
-      .nav,
-      .footer-wrap {
-        flex-direction: column;
+    .footer-social a:hover {
+      transform: translateY(-3px);
+    }
+
+    .footer-social a:nth-child(1):hover {
+      background: #e1306c;
+    }
+
+    .footer-social a:nth-child(2):hover {
+      background: #000000;
+    }
+
+    .footer-social a:nth-child(3):hover {
+      background: #ff0000;
+    }
+
+    @media (max-width: 980px) {
+      .nav-wrap {
+        flex-wrap: wrap;
+        justify-content: center;
         padding: 14px 0;
+      }
+
+      .brand {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .quick-nav-grid,
+      .split,
+      .vision-grid,
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .structure-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .department-photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-box {
         text-align: center;
       }
 
-      .grid-2,
-      .grid-3,
-      .role-grid,
-      .department-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .department-card.center {
-        width: 100%;
+      .cta-box .btn {
+        justify-self: center;
       }
     }
 
-    @media (max-width: 560px) {
-      .menu {
-        flex-wrap: wrap;
-        justify-content: center;
+    @media (max-width: 640px) {
+      .nav-menu {
+        width: 100%;
         gap: 14px;
       }
 
-      .hero {
-        padding: 76px 0 88px;
+      .nav-cta {
+        width: 100%;
       }
 
-      .section {
-        padding: 68px 0;
+      .about-hero {
+        min-height: auto;
       }
 
-      .hero-actions,
-      .department-head,
-      .coordinator {
-        display: grid;
-        grid-template-columns: 1fr;
+      .about-hero .container {
+        padding: 64px 0 84px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-actions {
+        flex-direction: column;
       }
 
       .btn {
         width: 100%;
       }
 
-      .members {
+      .quick-nav {
+        margin-top: -32px;
+      }
+
+      .quick-nav-grid {
+        padding: 12px;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .content-panel,
+      .vision-card,
+      .mission-card,
+      .cta-box {
+        padding: 24px;
+      }
+
+      .timeline-item,
+      .structure-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .department-head,
+      .coordinator-card {
+        grid-template-columns: 1fr;
+      }
+
+      .department-head {
+        display: grid;
+      }
+
+      .members-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .timeline-year {
+        min-height: 76px;
+      }
+
+      .footer-wrap {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav">
+    <div class="container nav-wrap">
       <a href="index.html" class="brand">
-        <img src="Logo Himo Mojokerto.PNG" alt="Logo HIMO Mojokerto Raya" />
-        <strong>HIMO MOJOKERTO RAYA <span>The Spirit Of Majapahit Greatness</span></strong>
+        <img
+          src="Logo Himo Mojokerto.PNG"
+          alt="Logo HIMO Mojokerto Raya"
+          class="brand-logo"
+        />
+        <div class="brand-text">
+          <strong>HIMO MOJOKERTO RAYA</strong>
+          <span>The Spirit Of Majapahit Greatness</span>
+        </div>
       </a>
-      <ul class="menu">
-        <li><a href="#profil">Profil</a></li>
-        <li><a href="#sejarah">Sejarah</a></li>
-        <li><a href="#visi-misi">Visi Misi</a></li>
-        <li><a href="#struktur">Struktur</a></li>
-      </ul>
-      <a href="index.html#kontak" class="btn">Hubungi Kami</a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#profil">Profil</a></li>
+          <li><a href="#sejarah">Sejarah</a></li>
+          <li><a href="#visi-misi">Visi Misi</a></li>
+          <li><a href="#struktur">Struktur</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#kontak" class="nav-cta">Hubungi Kami</a>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="about-hero">
       <div class="container">
-        <h1>Tentang HIMO Mojokerto Raya</h1>
-        <p>
-          Profil, sejarah, visi misi, dan struktur HIMO Mojokerto Raya sebagai
-          wadah kolaborasi OSIS SMA di Mojokerto Raya.
-        </p>
-        <div class="hero-actions">
-          <a href="index.html" class="btn btn-gold">Kembali ke Beranda</a>
-          <a href="#struktur" class="btn">Lihat Struktur</a>
+        <div class="hero-content" data-aos="fade-up">
+          <a href="index.html" class="crumb">
+            <i class="fa-solid fa-arrow-left"></i>
+            Kembali ke Beranda
+          </a>
+          <h1>Tentang HIMO Mojokerto Raya</h1>
+          <p>
+            Halaman ini merangkum identitas organisasi, perjalanan, arah gerak,
+            dan susunan kepengurusan HIMO Mojokerto Raya sebagai wadah
+            kolaborasi OSIS SMA di wilayah Mojokerto Raya.
+          </p>
+          <div class="hero-actions">
+            <a href="#profil" class="btn btn-primary">Mulai Baca</a>
+            <a href="#struktur" class="btn btn-secondary">Lihat Struktur</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-nav">
+      <div class="container">
+        <div class="quick-nav-grid" data-aos="fade-up">
+          <a href="#profil" class="quick-link">
+            <i class="fa-solid fa-id-card"></i>
+            Profil
+          </a>
+          <a href="#sejarah" class="quick-link">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Sejarah
+          </a>
+          <a href="#visi-misi" class="quick-link">
+            <i class="fa-solid fa-bullseye"></i>
+            Visi Misi
+          </a>
+          <a href="#struktur" class="quick-link">
+            <i class="fa-solid fa-sitemap"></i>
+            Struktur
+          </a>
         </div>
       </div>
     </section>
 
     <section class="section" id="profil">
-      <div class="container grid grid-2">
-        <div class="card profile-logo">
-          <img src="Logo Himo Mojokerto.PNG" alt="Logo HIMO Mojokerto Raya" />
-        </div>
-        <article class="card">
-          <span class="eyebrow">Profil</span>
-          <h2>Wadah komunikasi dan kolaborasi OSIS</h2>
+      <div class="container split">
+        <div class="image-panel" data-aos="fade-right" aria-label="Logo HIMO Mojokerto Raya"></div>
+        <article class="content-panel" data-aos="fade-left">
+          <span class="eyebrow">Profil Organisasi</span>
+          <h3>Wadah komunikasi dan kolaborasi OSIS Mojokerto Raya</h3>
           <p>
             HIMO SMA Mojokerto Raya adalah Himpunan Musyawarah OSIS yang
             mempertemukan ketua OSIS dan perwakilan SMA di Mojokerto Raya.
+            Organisasi ini hadir sebagai ruang untuk bertukar gagasan,
+            menyelaraskan agenda, dan menguatkan gerakan positif pelajar.
           </p>
           <p>
-            Organisasi ini menjadi ruang koordinasi, pengembangan kepemimpinan,
-            program sosial, publikasi, dan gerakan positif pelajar.
+            Dengan semangat The Spirit Of Majapahit Greatness, HIMO mendorong
+            pelajar untuk tumbuh sebagai pemimpin yang aktif, peduli, kreatif,
+            dan bertanggung jawab terhadap sekolah maupun masyarakat.
           </p>
+          <ul class="info-list">
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Bergerak di wilayah Kota dan Kabupaten Mojokerto.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-users"></i>
+              <span>Beranggotakan perwakilan OSIS dari berbagai SMA.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-handshake-angle"></i>
+              <span>Berfokus pada koordinasi, kepemimpinan, sosial, dan lingkungan.</span>
+            </li>
+          </ul>
         </article>
       </div>
     </section>
 
     <section class="section" id="sejarah">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Sejarah</span>
           <h2>Perjalanan HIMO Mojokerto Raya</h2>
-          <p>HIMO tumbuh dari kebutuhan koordinasi OSIS lintas sekolah.</p>
+          <p>
+            Setiap periode membawa cerita baru. Berikut gambaran perjalanan
+            HIMO sebagai ruang tumbuhnya kolaborasi pelajar.
+          </p>
         </div>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Awal</h3>
-            <p>Terbentuk sebagai forum musyawarah untuk menghubungkan OSIS antar sekolah.</p>
+
+        <div class="timeline">
+          <article class="timeline-item" data-aos="fade-up">
+            <div class="timeline-year">Awal</div>
+            <div class="timeline-card">
+              <h3>Terbentuk dari kebutuhan koordinasi OSIS</h3>
+              <p>
+                HIMO hadir sebagai forum musyawarah untuk menghubungkan OSIS
+                antar sekolah agar program pelajar dapat berjalan lebih
+                terarah, saling mendukung, dan berdampak luas.
+              </p>
+            </div>
           </article>
-          <article class="card">
-            <h3>Berkembang</h3>
-            <p>Menjadi ruang belajar kepemimpinan, kerja sama, dan manajemen organisasi.</p>
+
+          <article class="timeline-item" data-aos="fade-up">
+            <div class="timeline-year">Berkembang</div>
+            <div class="timeline-card">
+              <h3>Meluas menjadi ruang pengembangan kepemimpinan</h3>
+              <p>
+                Selain menjadi forum komunikasi, HIMO berkembang menjadi tempat
+                belajar kepemimpinan, manajemen organisasi, public speaking,
+                dan kolaborasi kegiatan lintas sekolah.
+              </p>
+            </div>
           </article>
-          <article class="card">
-            <h3>Kini</h3>
-            <p>Menguatkan program koordinasi, sosial, publikasi, dan gerakan lingkungan.</p>
+
+          <article class="timeline-item" data-aos="fade-up">
+            <div class="timeline-year">Kini</div>
+            <div class="timeline-card">
+              <h3>Mendorong program sosial dan lingkungan</h3>
+              <p>
+                Pada periode aktif 2026/2027, HIMO terus menguatkan program
+                koordinasi, bakti sosial, publikasi, serta gerakan lingkungan
+                seperti HIMO Bersinar dan HIMO Clean Up Day.
+              </p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section vision" id="visi-misi">
+    <section class="section vision-band" id="visi-misi">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Visi Misi</span>
           <h2>Arah Gerak Organisasi</h2>
-          <p>Pedoman HIMO dalam membangun organisasi yang solid dan berdampak.</p>
+          <p>
+            Visi dan misi menjadi pedoman HIMO dalam membangun organisasi yang
+            solid, aktif, dan bermanfaat bagi pelajar Mojokerto Raya.
+          </p>
         </div>
-        <div class="grid grid-2">
-          <article class="card">
+
+        <div class="vision-grid">
+          <article class="vision-card" data-aos="fade-right">
             <h3>Visi</h3>
             <p>
               Menjadikan HIMO Mojokerto Raya sebagai wadah pelajar yang solid,
-              inovatif, berkarakter, dan memberi kontribusi positif.
+              inovatif, berkarakter, dan mampu memberi kontribusi positif bagi
+              sekolah, masyarakat, serta lingkungan sekitar.
             </p>
           </article>
-          <article class="card">
+
+          <article class="mission-card" data-aos="fade-left">
             <h3>Misi</h3>
             <ol>
-              <li>Membangun komunikasi aktif antar OSIS SMA.</li>
-              <li>Mengembangkan kepemimpinan dan kerja sama pelajar.</li>
-              <li>Mengadakan kegiatan sosial, edukatif, dan lingkungan.</li>
-              <li>Menjadi media publikasi dan aspirasi pelajar.</li>
+              <li>Membangun komunikasi yang aktif antar OSIS SMA di Mojokerto Raya.</li>
+              <li>Mengembangkan jiwa kepemimpinan, tanggung jawab, dan kerja sama pelajar.</li>
+              <li>Mengadakan kegiatan sosial, edukatif, dan lingkungan yang berdampak nyata.</li>
+              <li>Menjadi media publikasi kegiatan dan aspirasi pelajar Mojokerto Raya.</li>
+              <li>Menjaga nama baik organisasi melalui sikap disiplin, kreatif, dan profesional.</li>
             </ol>
           </article>
         </div>
@@ -563,13 +1019,237 @@
 
     <section class="section" id="struktur">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
           <span class="eyebrow">Struktur</span>
           <h2>Struktur HIMO Mojokerto Raya</h2>
-          <p>Susunan pengurus inti dan departemen periode aktif.</p>
+          <p>
+            Susunan organisasi dibuat untuk membagi peran kerja agar setiap
+            program dapat direncanakan, dijalankan, dan dievaluasi dengan baik.
+          </p>
         </div>
-        <div class="role-grid" id="roleGrid"></div>
-        <div class="department-grid" id="departmentGrid"></div>
+
+        <div class="structure-grid">
+          <article class="role-card" data-aos="zoom-in" data-aos-delay="0">
+            <div class="role-icon"><i class="fa-solid fa-school"></i></div>
+            <h3>Delegasi</h3>
+            <p>Perwakilan sekolah yang menjadi penghubung informasi, aspirasi, dan koordinasi antara OSIS dengan HIMO.</p>
+          </article>
+
+          <article class="role-card" data-aos="zoom-in" data-aos-delay="60">
+            <div class="role-icon"><i class="fa-solid fa-crown"></i></div>
+            <h3>Ketua</h3>
+            <p>Memimpin arah organisasi, mengoordinasikan pengurus, dan menjaga keberjalanan program kerja.</p>
+          </article>
+
+          <article class="role-card" data-aos="zoom-in" data-aos-delay="120">
+            <div class="role-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <h3>Wakil Ketua</h3>
+            <p>Mendampingi ketua serta membantu pengawasan, pengambilan keputusan, dan koordinasi lintas bidang.</p>
+          </article>
+
+          <article class="role-card" data-aos="zoom-in" data-aos-delay="180">
+            <div class="role-icon"><i class="fa-solid fa-file-lines"></i></div>
+            <h3>Sekretaris</h3>
+            <p>Mengelola administrasi, surat-menyurat, pendataan, notulensi, dan dokumentasi organisasi.</p>
+          </article>
+
+          <article class="role-card" data-aos="zoom-in" data-aos-delay="240">
+            <div class="role-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+            <h3>Wakil Sekretaris</h3>
+            <p>Membantu sekretaris dalam pengarsipan, penyusunan dokumen, dan kelengkapan administrasi kegiatan.</p>
+          </article>
+
+          <article class="role-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="role-icon"><i class="fa-solid fa-wallet"></i></div>
+            <h3>Bendahara</h3>
+            <p>Mengelola keuangan organisasi secara tertib, transparan, dan bertanggung jawab.</p>
+          </article>
+        </div>
+
+        <div class="department-photo-grid">
+          <article class="department-card" data-aos="fade-up">
+            <div class="department-head">
+              <div class="department-title">
+                <h3>Departemen Keagamaan</h3>
+                <p>Mengelola kegiatan keagamaan serta membangun karakter pelajar yang berakhlak dan toleran.</p>
+              </div>
+              <span class="member-count">5 anggota</span>
+            </div>
+            <div class="coordinator-card">
+              <div class="photo-slot placeholder"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="person-info">
+                <strong>Koordinator Keagamaan</strong>
+                <span>Foto koordinator</span>
+              </div>
+            </div>
+            <div class="members-grid">
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 1</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 2</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 3</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 4</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 5</span></div>
+            </div>
+          </article>
+
+          <article class="department-card" data-aos="fade-up">
+            <div class="department-head">
+              <div class="department-title">
+                <h3>Departemen POK</h3>
+                <p>Mengembangkan program olahraga, kesehatan, dan kegiatan fisik yang memperkuat kebersamaan.</p>
+              </div>
+              <span class="member-count">5 anggota</span>
+            </div>
+            <div class="coordinator-card">
+              <div class="photo-slot placeholder"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="person-info">
+                <strong>Koordinator POK</strong>
+                <span>Foto koordinator</span>
+              </div>
+            </div>
+            <div class="members-grid">
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 1</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 2</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 3</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 4</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 5</span></div>
+            </div>
+          </article>
+
+          <article class="department-card" data-aos="fade-up">
+            <div class="department-head">
+              <div class="department-title">
+                <h3>Departemen Pendidikan</h3>
+                <p>Menginisiasi kegiatan edukatif, literasi, diskusi, dan pengembangan wawasan pelajar.</p>
+              </div>
+              <span class="member-count">5 anggota</span>
+            </div>
+            <div class="coordinator-card">
+              <div class="photo-slot placeholder"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="person-info">
+                <strong>Koordinator Pendidikan</strong>
+                <span>Foto koordinator</span>
+              </div>
+            </div>
+            <div class="members-grid">
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 1</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 2</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 3</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 4</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 5</span></div>
+            </div>
+          </article>
+
+          <article class="department-card" data-aos="fade-up">
+            <div class="department-head">
+              <div class="department-title">
+                <h3>Departemen Sosial Politik</h3>
+                <p>Menguatkan kepedulian sosial, kepekaan isu pelajar, dan partisipasi aktif dalam masyarakat.</p>
+              </div>
+              <span class="member-count">5 anggota</span>
+            </div>
+            <div class="coordinator-card">
+              <div class="photo-slot placeholder"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="person-info">
+                <strong>Koordinator Sosial Politik</strong>
+                <span>Foto koordinator</span>
+              </div>
+            </div>
+            <div class="members-grid">
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 1</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 2</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 3</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 4</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 5</span></div>
+            </div>
+          </article>
+
+          <article class="department-card" data-aos="fade-up">
+            <div class="department-head">
+              <div class="department-title">
+                <h3>Departemen Kewirausahaan</h3>
+                <p>Mengembangkan kreativitas usaha, pendanaan kegiatan, dan kemandirian ekonomi organisasi.</p>
+              </div>
+              <span class="member-count">5 anggota</span>
+            </div>
+            <div class="coordinator-card">
+              <div class="photo-slot placeholder"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="person-info">
+                <strong>Koordinator Kewirausahaan</strong>
+                <span>Foto koordinator</span>
+              </div>
+            </div>
+            <div class="members-grid">
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 1</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 2</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 3</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 4</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 5</span></div>
+            </div>
+          </article>
+
+          <article class="department-card" data-aos="fade-up">
+            <div class="department-head">
+              <div class="department-title">
+                <h3>Departemen Kebudayaan</h3>
+                <p>Menjaga dan mengembangkan apresiasi budaya, seni, serta identitas lokal Mojokerto Raya.</p>
+              </div>
+              <span class="member-count">6 anggota</span>
+            </div>
+            <div class="coordinator-card">
+              <div class="photo-slot placeholder"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="person-info">
+                <strong>Koordinator Kebudayaan</strong>
+                <span>Foto koordinator</span>
+              </div>
+            </div>
+            <div class="members-grid">
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 1</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 2</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 3</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 4</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 5</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 6</span></div>
+            </div>
+          </article>
+
+          <article class="department-card" data-aos="fade-up">
+            <div class="department-head">
+              <div class="department-title">
+                <h3>Departemen TIK</h3>
+                <p>Mengelola media digital, publikasi, dokumentasi, dan kebutuhan teknologi informasi organisasi.</p>
+              </div>
+              <span class="member-count">4 anggota</span>
+            </div>
+            <div class="coordinator-card">
+              <div class="photo-slot placeholder"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="person-info">
+                <strong>Koordinator TIK</strong>
+                <span>Foto koordinator</span>
+              </div>
+            </div>
+            <div class="members-grid">
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 1</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 2</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 3</span></div>
+              <div class="member-item"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Anggota 4</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box" data-aos="fade-up">
+          <div>
+            <h2>Siap berkolaborasi bersama HIMO?</h2>
+            <p>
+              Hubungi kami untuk komunikasi organisasi, kerja sama kegiatan,
+              publikasi, atau penyampaian aspirasi pelajar Mojokerto Raya.
+            </p>
+          </div>
+          <a href="index.html#kontak" class="btn btn-primary">Kontak HIMO</a>
+        </div>
       </div>
     </section>
   </main>
@@ -577,71 +1257,30 @@
   <footer class="site-footer">
     <div class="container footer-wrap">
       <p>Copyright 2026 &copy; HIMO Mojokerto Raya. All Rights Reserved.</p>
-      <div class="social">
-        <a href="https://www.instagram.com/himomjkt" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@himomojokerto" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="https://youtube.com/@himomojokertoraya" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/himomjkt" target="_blank" rel="noopener noreferrer" aria-label="Instagram HIMO Mojokerto Raya">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@himomojokerto" target="_blank" rel="noopener noreferrer" aria-label="TikTok HIMO Mojokerto Raya">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://youtube.com/@himomojokertoraya" target="_blank" rel="noopener noreferrer" aria-label="YouTube HIMO Mojokerto Raya">
+          <i class="fab fa-youtube"></i>
+        </a>
       </div>
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const roles = [
-      { name: "Delegasi", icon: "fa-school", desc: "Penghubung informasi, aspirasi, dan koordinasi antara OSIS dengan HIMO.", photos: ["Delegasi 1", "Delegasi 2"] },
-      { name: "Ketua", icon: "fa-crown", desc: "Memimpin arah organisasi dan menjaga keberjalanan program kerja.", photos: ["Ketua 1", "Ketua 2"] },
-      { name: "Wakil Ketua", icon: "fa-user-shield", desc: "Mendampingi ketua serta membantu koordinasi lintas bidang.", photos: [] },
-      { name: "Sekretaris", icon: "fa-file-lines", desc: "Mengelola administrasi, surat, notulensi, dan dokumentasi.", photos: ["Sekretaris 1", "Sekretaris 2"] },
-      { name: "Wakil Sekretaris", icon: "fa-pen-to-square", desc: "Membantu pengarsipan, dokumen, dan administrasi kegiatan.", photos: ["Wakil Sekre 1", "Wakil Sekre 2"] },
-      { name: "Bendahara", icon: "fa-wallet", desc: "Mengelola keuangan organisasi secara tertib dan transparan.", photos: ["Bendahara 1", "Bendahara 2"] }
-    ];
-
-    const departments = [
-      { name: "Departemen Keagamaan", desc: "Mengelola kegiatan keagamaan dan penguatan karakter.", count: 5, coordinator: "Koordinator Keagamaan" },
-      { name: "Departemen POK", desc: "Mengembangkan program olahraga, kesehatan, dan kegiatan fisik.", count: 5, coordinator: "Koordinator POK" },
-      { name: "Departemen Pendidikan", desc: "Menginisiasi kegiatan edukatif, literasi, dan diskusi.", count: 5, coordinator: "Koordinator Pendidikan" },
-      { name: "Departemen Sosial Politik", desc: "Menguatkan kepedulian sosial dan kepekaan isu pelajar.", count: 5, coordinator: "Koordinator Sosial Politik" },
-      { name: "Departemen Kewirausahaan", desc: "Mengembangkan kreativitas usaha dan kemandirian ekonomi.", count: 5, coordinator: "Koordinator Kewirausahaan" },
-      { name: "Departemen Kebudayaan", desc: "Menjaga apresiasi budaya, seni, dan identitas lokal.", count: 6, coordinator: "Koordinator Kebudayaan" },
-      { name: "Departemen TIK", desc: "Mengelola media digital, publikasi, dokumentasi, dan teknologi.", count: 5, coordinator: "Koordinator TIK", center: true }
-    ];
-
-    const photo = (label, icon = "fa-user") => `
-      <div class="photo">
-        <div class="photo-box"><i class="fa-solid ${icon}"></i></div>
-        <span>${label}</span>
-      </div>
-    `;
-
-    roleGrid.innerHTML = roles.map((role) => `
-      <article class="role-card">
-        <div class="icon"><i class="fa-solid ${role.icon}"></i></div>
-        <h3>${role.name}</h3>
-        <p>${role.desc}</p>
-        ${role.photos.length ? `<div class="photos">${role.photos.map((item) => photo(item)).join("")}</div>` : ""}
-      </article>
-    `).join("");
-
-    departmentGrid.innerHTML = departments.map((dept) => `
-      <article class="department-card ${dept.center ? "center" : ""}">
-        <div class="department-head">
-          <div>
-            <h3>${dept.name}</h3>
-            <p>${dept.desc}</p>
-          </div>
-          <span class="count">${dept.count} anggota</span>
-        </div>
-        <div class="coordinator">
-          <div class="photo-box"><i class="fa-solid fa-user-tie"></i></div>
-          <div>
-            <strong>${dept.coordinator}</strong>
-            <p>Foto koordinator</p>
-          </div>
-        </div>
-        <div class="members">
-          ${Array.from({ length: dept.count }, (_, i) => photo(`Anggota ${i + 1}`)).join("")}
-        </div>
-      </article>
-    `).join("");
+    if (window.AOS) {
+      AOS.init({
+        duration: 900,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 90
+      });
+    }
   </script>
 </body>
 </html>
