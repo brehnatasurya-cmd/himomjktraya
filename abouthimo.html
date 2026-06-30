@@ -510,6 +510,31 @@
       color: #0d1b2d;
     }
 
+    .role-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0 16px;
+    }
+
+    .role-photo {
+      text-align: center;
+      min-width: 0;
+    }
+
+    .role-photo .photo-slot {
+      border-radius: 14px;
+      margin-bottom: 8px;
+    }
+
+    .role-photo span {
+      display: block;
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
     .role-card p {
       color: var(--text-soft);
     }
@@ -1032,36 +1057,60 @@
           <article class="role-card" data-aos="zoom-in" data-aos-delay="0">
             <div class="role-icon"><i class="fa-solid fa-school"></i></div>
             <h3>Delegasi</h3>
+            <div class="role-photo-grid">
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 1</span></div>
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 2</span></div>
+            </div>
             <p>Perwakilan sekolah yang menjadi penghubung informasi, aspirasi, dan koordinasi antara OSIS dengan HIMO.</p>
           </article>
 
           <article class="role-card" data-aos="zoom-in" data-aos-delay="60">
             <div class="role-icon"><i class="fa-solid fa-crown"></i></div>
             <h3>Ketua</h3>
+            <div class="role-photo-grid">
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 1</span></div>
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 2</span></div>
+            </div>
             <p>Memimpin arah organisasi, mengoordinasikan pengurus, dan menjaga keberjalanan program kerja.</p>
           </article>
 
           <article class="role-card" data-aos="zoom-in" data-aos-delay="120">
             <div class="role-icon"><i class="fa-solid fa-user-shield"></i></div>
             <h3>Wakil Ketua</h3>
+            <div class="role-photo-grid">
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 1</span></div>
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 2</span></div>
+            </div>
             <p>Mendampingi ketua serta membantu pengawasan, pengambilan keputusan, dan koordinasi lintas bidang.</p>
           </article>
 
           <article class="role-card" data-aos="zoom-in" data-aos-delay="180">
             <div class="role-icon"><i class="fa-solid fa-file-lines"></i></div>
             <h3>Sekretaris</h3>
+            <div class="role-photo-grid">
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 1</span></div>
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 2</span></div>
+            </div>
             <p>Mengelola administrasi, surat-menyurat, pendataan, notulensi, dan dokumentasi organisasi.</p>
           </article>
 
           <article class="role-card" data-aos="zoom-in" data-aos-delay="240">
             <div class="role-icon"><i class="fa-solid fa-pen-to-square"></i></div>
             <h3>Wakil Sekretaris</h3>
+            <div class="role-photo-grid">
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 1</span></div>
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 2</span></div>
+            </div>
             <p>Membantu sekretaris dalam pengarsipan, penyusunan dokumen, dan kelengkapan administrasi kegiatan.</p>
           </article>
 
           <article class="role-card" data-aos="zoom-in" data-aos-delay="300">
             <div class="role-icon"><i class="fa-solid fa-wallet"></i></div>
             <h3>Bendahara</h3>
+            <div class="role-photo-grid">
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 1</span></div>
+              <div class="role-photo"><div class="photo-slot placeholder"><i class="fa-solid fa-user"></i></div><span>Foto 2</span></div>
+            </div>
             <p>Mengelola keuangan organisasi secara tertib, transparan, dan bertanggung jawab.</p>
           </article>
         </div>
