@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Struktur Organisasi | HIMO Mojokerto Raya</title>
+  <meta name="description" content="Susunan kepengurusan HIMO Mojokerto Raya periode 2026/2027. Org chart hierarkis dari delegasi hingga departemen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .org-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 16px; }
+    .org-chart { min-width: 680px; display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .org-connector { display: flex; justify-content: center; height: 28px; }
+    .org-connector::before { content: ''; width: 1px; height: 100%; background: var(--border); }
+    .org-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .org-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 18px 14px; border-radius: var(--r-md); transition: box-shadow var(--t-base), transform var(--t-base); }
+    .org-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .org-card--l1 { background: var(--navy); color: #fff; min-width: 220px; box-shadow: var(--shadow-md); }
+    .org-card--l2 { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--navy-mid); min-width: 170px; box-shadow: var(--shadow-sm); }
+    .org-card--l3 { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--sky); min-width: 170px; box-shadow: var(--shadow-xs); }
+    .org-card--l4 { background: var(--bg); border: 1px solid var(--border); min-width: 138px; box-shadow: var(--shadow-xs); }
+    .org-card__avatar { width: 60px; height: 60px; border-radius: 50%; background: rgba(11,31,58,0.08); display: grid; place-items: center; margin: 0 auto 10px; font-size: 1.3rem; color: var(--text-muted); }
+    .org-card--l1 .org-card__avatar { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.6); }
+    .org-card__avatar--sm { width: 46px; height: 46px; font-size: 1rem; margin-bottom: 8px; }
+    .org-card__name { font-size: 0.8rem; font-weight: 600; font-style: italic; opacity: 0.55; margin-bottom: 3px; }
+    .org-card--l1 .org-card__name { color: rgba(255,255,255,0.7); }
+    .org-card__position { font-size: 0.82rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
+    .org-card--l1 .org-card__position { color: #fff; font-size: 0.9rem; }
+
+    .dept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    .dept-card { background: var(--bg); border-radius: var(--r-lg); border-top: 3px solid var(--navy-mid); box-shadow: var(--shadow-sm); overflow: hidden; }
+    .dept-card__header { background: var(--bg-alt); padding: 16px 18px; border-bottom: 1px solid var(--border-soft); }
+    .dept-card__name { font-size: 0.9rem; font-weight: 800; color: var(--navy); }
+    .dept-card__body { padding: 12px 18px; }
+    .dept-member { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border-soft); }
+    .dept-member:last-child { border-bottom: none; }
+    .dept-member__avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--bg-alt); display: grid; place-items: center; font-size: 0.72rem; color: var(--text-muted); flex-shrink: 0; border: 1px solid var(--border); }
+    .dept-member__name { font-size: 0.82rem; font-weight: 600; font-style: italic; opacity: 0.6; display: block; }
+    .dept-member__role { font-size: 0.72rem; color: var(--text-muted); display: block; }
+
+    .info-box { background: rgba(85,182,232,0.08); border: 1px solid rgba(85,182,232,0.25); border-radius: var(--r-md); padding: 18px 22px; display: flex; align-items: flex-start; gap: 12px; margin-top: 40px; }
+    .info-box i { color: var(--navy-mid); font-size: 1.05rem; flex-shrink: 0; margin-top: 2px; }
+    .info-box p { font-size: 0.88rem; color: var(--text-soft); margin: 0; max-width: none; }
+
+    @media (max-width: 1024px) { .dept-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .dept-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header" data-transparent="false">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="brand" aria-label="HIMO Mojokerto Raya — Halaman Utama">
+          <img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="brand-logo" width="46" height="46" />
+          <div class="brand-text"><strong>HIMO</strong><span>Mojokerto Raya</span></div>
+        </a>
+        <nav aria-label="Navigasi utama">
+          <ul class="nav-menu">
+            <li><a href="about.html" class="nav-link">Tentang</a></li>
+            <li><a href="struktur.html" class="nav-link">Struktur Organisasi</a></li>
+            <li><a href="informasi.html" class="nav-link">Informasi Terbaru</a></li>
+            <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+          </ul>
+        </nav>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-mobile">
+          <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="nav-mobile" aria-label="Navigasi mobile" hidden>
+        <ul class="nav-mobile-list">
+          <li><a href="about.html" class="nav-mobile-link">Tentang</a></li>
+          <li><a href="struktur.html" class="nav-mobile-link">Struktur Organisasi</a></li>
+          <li><a href="informasi.html" class="nav-mobile-link">Informasi Terbaru</a></li>
+          <li><a href="kontak.html" class="nav-mobile-link">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="container" data-aos="fade-up">
+        <p class="page-header__label">Kepengurusan 2026/2027</p>
+        <h1 class="page-header__title">Struktur Organisasi</h1>
+        <p class="page-header__desc">Susunan kepengurusan HIMO Mojokerto Raya periode 2026/2027. Data placeholder akan diperbarui setelah verifikasi resmi.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="orgchart-heading">
+      <div class="container">
+        <h2 id="orgchart-heading" style="text-align:center;margin-bottom:48px" data-aos="fade-up">Hierarki Kepengurusan Inti</h2>
+
+        <div class="org-wrap" data-aos="fade-up" data-aos-delay="80">
+          <div class="org-chart" role="img" aria-label="Bagan organisasi HIMO Mojokerto Raya 2026/2027">
+
+            <!-- L1 Delegasi -->
+            <div class="org-card org-card--l1">
+              <div class="org-card__avatar" aria-hidden="true"><i class="fas fa-users"></i></div>
+              <p class="org-card__position">Delegasi Kabupaten dan Kota Mojokerto</p>
+              <p class="org-card__name">[Nama Delegasi]</p>
+            </div>
+            <div class="org-connector" aria-hidden="true"></div>
+
+            <!-- L2 Ketua -->
+            <div class="org-row" style="gap:28px">
+              <div class="org-card org-card--l2"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Ketua Kabupaten Mojokerto</p><p class="org-card__name">[Nama Pengurus]</p></div>
+              <div class="org-card org-card--l2"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Ketua Kota Mojokerto</p><p class="org-card__name">[Nama Pengurus]</p></div>
+            </div>
+            <div class="org-connector" aria-hidden="true"></div>
+
+            <!-- L3 Wakil Ketua -->
+            <div class="org-row" style="gap:28px">
+              <div class="org-card org-card--l3"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Wakil Ketua Kabupaten</p><p class="org-card__name">[Nama Pengurus]</p></div>
+              <div class="org-card org-card--l3"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Wakil Ketua Kota</p><p class="org-card__name">[Nama Pengurus]</p></div>
+            </div>
+            <div class="org-connector" aria-hidden="true"></div>
+
+            <!-- L4 Sekretaris & Bendahara -->
+            <div class="org-row" style="gap:14px">
+              <div class="org-card org-card--l4"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Sekretaris 1</p><p class="org-card__name">[Nama Pengurus]</p></div>
+              <div class="org-card org-card--l4"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Sekretaris 2</p><p class="org-card__name">[Nama Pengurus]</p></div>
+              <div class="org-card org-card--l4"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Bendahara 1</p><p class="org-card__name">[Nama Pengurus]</p></div>
+              <div class="org-card org-card--l4"><div class="org-card__avatar org-card__avatar--sm" aria-hidden="true"><i class="fas fa-user"></i></div><p class="org-card__position">Bendahara 2</p><p class="org-card__name">[Nama Pengurus]</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Departments -->
+        <div style="margin-top:64px">
+          <div style="text-align:center;margin-bottom:36px" data-aos="fade-up">
+            <span class="section-label">Departemen</span>
+            <h2>Tujuh Departemen HIMO</h2>
+            <p style="color:var(--text-soft);text-align:center;margin-inline:auto">Setiap departemen terdiri dari satu kepala departemen dan enam anggota.</p>
+          </div>
+
+          <div class="dept-grid">
+            <!-- Template macro for each dept -->
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="0">
+              <div class="dept-card__header"><p class="dept-card__name"><i class="fas fa-graduation-cap" style="color:var(--navy-mid);margin-right:7px" aria-hidden="true"></i>Departemen Pendidikan</p></div>
+              <div class="dept-card__body">
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Kepala Departemen</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+              </div>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="60">
+              <div class="dept-card__header"><p class="dept-card__name"><i class="fas fa-heart" style="color:var(--navy-mid);margin-right:7px" aria-hidden="true"></i>Departemen Sosial dan Lingkungan</p></div>
+              <div class="dept-card__body">
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Kepala Departemen</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+              </div>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="120">
+              <div class="dept-card__header"><p class="dept-card__name"><i class="fas fa-broadcast-tower" style="color:var(--navy-mid);margin-right:7px" aria-hidden="true"></i>Departemen Komunikasi dan Informasi</p></div>
+              <div class="dept-card__body">
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Kepala Departemen</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+              </div>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="0">
+              <div class="dept-card__header"><p class="dept-card__name"><i class="fas fa-palette" style="color:var(--navy-mid);margin-right:7px" aria-hidden="true"></i>Departemen Seni dan Budaya</p></div>
+              <div class="dept-card__body">
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Kepala Departemen</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+              </div>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="60">
+              <div class="dept-card__header"><p class="dept-card__name"><i class="fas fa-futbol" style="color:var(--navy-mid);margin-right:7px" aria-hidden="true"></i>Departemen Olahraga dan Kesehatan</p></div>
+              <div class="dept-card__body">
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Kepala Departemen</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+              </div>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="120">
+              <div class="dept-card__header"><p class="dept-card__name"><i class="fas fa-store" style="color:var(--navy-mid);margin-right:7px" aria-hidden="true"></i>Departemen Kewirausahaan</p></div>
+              <div class="dept-card__body">
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Kepala Departemen</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+              </div>
+            </div>
+            <div class="dept-card" data-aos="fade-up" data-aos-delay="0">
+              <div class="dept-card__header"><p class="dept-card__name"><i class="fas fa-network-wired" style="color:var(--navy-mid);margin-right:7px" aria-hidden="true"></i>Departemen Hubungan Masyarakat</p></div>
+              <div class="dept-card__body">
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Kepala Departemen</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+                <div class="dept-member"><div class="dept-member__avatar" aria-hidden="true"><i class="fas fa-user"></i></div><div><span class="dept-member__name">[Nama Pengurus]</span><span class="dept-member__role">Anggota</span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <i class="fas fa-circle-info" aria-hidden="true"></i>
+            <p>Data kepengurusan yang tercantum merupakan placeholder dan akan diperbarui melalui dashboard admin setelah verifikasi data resmi pengurus HIMO Mojokerto Raya periode 2026/2027.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="footer-logo" width="44" height="44" /><div><strong class="footer-brand-name">HIMO Mojokerto Raya</strong><p class="footer-brand-tagline">The Spirit Of Majapahit Greatness</p></div></div>
+        <div class="footer-links"><a href="about.html" class="footer-link">Tentang</a><a href="struktur.html" class="footer-link">Struktur</a><a href="informasi.html" class="footer-link">Informasi</a><a href="kontak.html" class="footer-link">Kontak</a></div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/himomjkt" target="_blank" rel="noopener noreferrer" aria-label="Instagram HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@himomojokerto" target="_blank" rel="noopener noreferrer" aria-label="TikTok HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://youtube.com/@himomojokertoraya" target="_blank" rel="noopener noreferrer" aria-label="YouTube HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>Copyright 2026 &copy; HIMO Mojokerto Raya. Hak cipta dilindungi.</p></div>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script>document.addEventListener('DOMContentLoaded',function(){if(window.AOS)AOS.init({duration:800,easing:'ease-out-quart',once:true,offset:70,disable:window.matchMedia('(prefers-reduced-motion: reduce)').matches});});</script>
+</body>
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak | HIMO Mojokerto Raya</title>
+  <meta name="description" content="Informasi kontak, media sosial resmi, dan lokasi sekretariat HIMO Mojokerto Raya." />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Page-specific styles -->
+  <style>
+    /* =========================================================
+       PAGE HEADER — navy bg, institution-grade hierarchy
+    ========================================================= */
+    .page-header {
+      background: var(--navy);
+      padding: 120px 0 56px;   /* top clears the fixed nav */
+      text-align: center;
+    }
+
+    .page-header__title {
+      color: #fff;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+
+    .page-header__desc {
+      color: var(--text-soft-dark);
+      font-size: 1.05rem;
+      max-width: 52ch;
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+       CONTACT GRID — 60/40 split, left=info, right=map
+    ========================================================= */
+    .contact-section {
+      padding: var(--section-y) 0;
+      background: var(--bg);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 60fr 40fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* LEFT COLUMN */
+    .contact-left__heading {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .contact-left__desc {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      max-width: 56ch;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    /* Contact Person Card */
+    .cp-card {
+      background: #fff;
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-md);
+      padding: 28px 28px 24px;
+      margin-bottom: 28px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .cp-card__heading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .cp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cp-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Placeholder avatar — initial circle, clearly not a real photo */
+    .cp-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--bg-alt);
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .cp-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cp-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cp-jabatan {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* WhatsApp button — real anchor, opens wa.me */
+    .btn--wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      background: #25D366;
+      color: #fff;
+      border-radius: var(--r-sm);
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background var(--t-fast) var(--ease),
+                  box-shadow var(--t-fast) var(--ease),
+                  transform var(--t-fast) var(--ease);
+      flex-shrink: 0;
+      min-height: 44px;
+      cursor: pointer;
+    }
+
+    .btn--wa:hover {
+      background: #1dab54;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.32);
+      transform: translateY(-1px);
+    }
+
+    .btn--wa:active {
+      transform: translateY(0);
+    }
+
+    /* Placeholder note — clearly labeled */
+    .cp-placeholder-note {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* Address Block */
+    .address-block {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .address-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .address-item__icon {
+      color: var(--sky);
+      font-size: 1rem;
+      margin-top: 2px;
+      width: 20px;
+      flex-shrink: 0;
+    }
+
+    .address-item__text {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .address-item__text a {
+      color: var(--navy-mid);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--t-fast);
+    }
+
+    .address-item__text a:hover {
+      color: var(--sky-dark);
+    }
+
+    /* RIGHT COLUMN — Map */
+    .map-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 88px;   /* clears fixed nav */
+    }
+
+    .map-frame {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-soft);
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    .btn--maps {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--r-md);
+      background: var(--navy);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: background var(--t-fast) var(--ease),
+                  box-shadow var(--t-fast) var(--ease),
+                  transform var(--t-fast) var(--ease);
+      min-height: 44px;
+      cursor: pointer;
+    }
+
+    .btn--maps:hover {
+      background: var(--navy-dark);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .btn--maps:active {
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       SOCIAL MEDIA SECTION
+    ========================================================= */
+    .social-section {
+      background: var(--bg-alt);
+      padding: var(--section-y) 0;
+    }
+
+    .social-section__header {
+      margin-bottom: 44px;
+    }
+
+    .social-section__heading {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .social-section__desc {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+      max-width: 56ch;
+    }
+
+    /* 3-col social card grid */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .social-card {
+      background: #fff;
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 36px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      transition: transform var(--t-base) var(--ease),
+                  box-shadow var(--t-base) var(--ease);
+      border: 1px solid var(--border-soft);
+    }
+
+    .social-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .social-card__icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .social-card__platform {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    .social-card__handle {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin-bottom: 8px;
+    }
+
+    /* Platform-colored buttons — purpose: instant visual recognition of destination */
+    .btn--instagram {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--r-md);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      background: #E1306C;
+      transition: background var(--t-fast) var(--ease),
+                  box-shadow var(--t-fast) var(--ease),
+                  transform var(--t-fast) var(--ease);
+      min-height: 44px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .btn--instagram:hover {
+      background: #c0245a;
+      box-shadow: 0 6px 20px rgba(225, 48, 108, 0.32);
+      transform: translateY(-2px);
+    }
+
+    .btn--instagram:active {
+      transform: translateY(0);
+    }
+
+    .btn--tiktok {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--r-md);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      background: #111;
+      transition: background var(--t-fast) var(--ease),
+                  box-shadow var(--t-fast) var(--ease),
+                  transform var(--t-fast) var(--ease);
+      min-height: 44px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .btn--tiktok:hover {
+      background: #000;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .btn--tiktok:active {
+      transform: translateY(0);
+    }
+
+    .btn--youtube {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--r-md);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      background: #FF0000;
+      transition: background var(--t-fast) var(--ease),
+                  box-shadow var(--t-fast) var(--ease),
+                  transform var(--t-fast) var(--ease);
+      min-height: 44px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .btn--youtube:hover {
+      background: #cc0000;
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.30);
+      transform: translateY(-2px);
+    }
+
+    .btn--youtube:active {
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       CATATAN SECTION — info box
+    ========================================================= */
+    .catatan-section {
+      background: var(--bg);
+      padding: 40px 0 56px;
+    }
+
+    .catatan-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--sky);
+      border-radius: var(--r-md);
+      padding: 18px 22px;
+      max-width: 680px;
+    }
+
+    .catatan-box__icon {
+      color: var(--sky-dark);
+      font-size: 1rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .catatan-box__text {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+      max-width: none;
+    }
+
+    /* =========================================================
+       RESPONSIVE — TABLET & MOBILE
+    ========================================================= */
+    @media (max-width: 860px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .map-col {
+        position: static;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-inline: auto;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .cp-item {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .cp-item > .btn--wa {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn--maps {
+        align-self: stretch;
+        justify-content: center;
+      }
+
+      .catatan-box {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== SHARED NAVBAR ========== -->
+  <header class="site-header" id="site-header" data-transparent="false">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="brand" aria-label="HIMO Mojokerto Raya - Halaman Utama">
+          <img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="brand-logo" width="46" height="46" />
+          <div class="brand-text">
+            <strong>HIMO</strong>
+            <span>Mojokerto Raya</span>
+          </div>
+        </a>
+        <nav aria-label="Navigasi utama">
+          <ul class="nav-menu">
+            <li><a href="about.html" class="nav-link">Tentang</a></li>
+            <li><a href="struktur.html" class="nav-link">Struktur Organisasi</a></li>
+            <li><a href="informasi.html" class="nav-link">Informasi Terbaru</a></li>
+            <li><a href="kontak.html" class="nav-link" aria-current="page">Kontak</a></li>
+          </ul>
+        </nav>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-mobile">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="nav-mobile" aria-label="Navigasi mobile" hidden>
+        <ul class="nav-mobile-list">
+          <li><a href="about.html" class="nav-mobile-link">Tentang</a></li>
+          <li><a href="struktur.html" class="nav-mobile-link">Struktur Organisasi</a></li>
+          <li><a href="informasi.html" class="nav-mobile-link">Informasi Terbaru</a></li>
+          <li><a href="kontak.html" class="nav-mobile-link" aria-current="page">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== 1. PAGE HEADER ========== -->
+    <section class="page-header" aria-labelledby="page-title">
+      <div class="container">
+        <h1 class="page-header__title" id="page-title">Kontak</h1>
+        <p class="page-header__desc">Informasi kontak resmi dan media sosial HIMO Mojokerto Raya.</p>
+      </div>
+    </section>
+
+    <!-- ========== 2. CONTACT GRID ========== -->
+    <section class="contact-section section" aria-label="Informasi kontak dan lokasi">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- LEFT: Info -->
+          <div class="contact-left">
+            <h2 class="contact-left__heading" data-aos="fade-up">Hubungi Kami</h2>
+            <p class="contact-left__desc" data-aos="fade-up" data-aos-delay="60">
+              Untuk pertanyaan, kerja sama, atau penyampaian aspirasi, silakan hubungi kami melalui saluran komunikasi resmi berikut.
+            </p>
+
+            <!-- Contact Person Card -->
+            <div class="cp-card" data-aos="fade-up" data-aos-delay="120">
+              <h3 class="cp-card__heading">Contact Person Kepengurusan</h3>
+              <ul class="cp-list" role="list">
+
+                <!-- Person 1 — placeholder -->
+                <li class="cp-item">
+                  <div class="cp-avatar" aria-hidden="true">?</div>
+                  <div class="cp-info">
+                    <span class="cp-name">[Nama Pengurus]</span>
+                    <span class="cp-jabatan">[Jabatan]</span>
+                    <span class="cp-placeholder-note">(Belum dikonfigurasi)</span>
+                  </div>
+                  <a
+                    href="https://wa.me/"
+                    class="btn--wa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Hubungi via WhatsApp (nomor belum dikonfigurasi)"
+                    aria-disabled="true"
+                  >
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    WhatsApp
+                  </a>
+                </li>
+
+                <!-- Person 2 — placeholder -->
+                <li class="cp-item">
+                  <div class="cp-avatar" aria-hidden="true">?</div>
+                  <div class="cp-info">
+                    <span class="cp-name">[Nama Pengurus]</span>
+                    <span class="cp-jabatan">[Jabatan]</span>
+                    <span class="cp-placeholder-note">(Belum dikonfigurasi)</span>
+                  </div>
+                  <a
+                    href="https://wa.me/"
+                    class="btn--wa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Hubungi via WhatsApp (nomor belum dikonfigurasi)"
+                    aria-disabled="true"
+                  >
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    WhatsApp
+                  </a>
+                </li>
+
+                <!-- Person 3 — placeholder -->
+                <li class="cp-item">
+                  <div class="cp-avatar" aria-hidden="true">?</div>
+                  <div class="cp-info">
+                    <span class="cp-name">[Nama Pengurus]</span>
+                    <span class="cp-jabatan">[Jabatan]</span>
+                    <span class="cp-placeholder-note">(Belum dikonfigurasi)</span>
+                  </div>
+                  <a
+                    href="https://wa.me/"
+                    class="btn--wa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Hubungi via WhatsApp (nomor belum dikonfigurasi)"
+                    aria-disabled="true"
+                  >
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    WhatsApp
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+            <!-- Address Block -->
+            <address class="address-block" data-aos="fade-up" data-aos-delay="160">
+              <div class="address-item">
+                <i class="fa-solid fa-location-dot address-item__icon" aria-hidden="true"></i>
+                <span class="address-item__text">
+                  Jl. Hayam Wuruk No.66, Mergelo, Magersari, Kec. Magersari, Kota Mojokerto, Jawa Timur 61318
+                </span>
+              </div>
+              <div class="address-item">
+                <i class="fa-solid fa-envelope address-item__icon" aria-hidden="true"></i>
+                <span class="address-item__text">
+                  <a href="mailto:himomjkt@email.com">himomjkt@email.com</a>
+                </span>
+              </div>
+            </address>
+          </div>
+
+          <!-- RIGHT: Map -->
+          <div class="map-col" data-aos="fade-left" data-aos-delay="80">
+            <div class="map-frame">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3492.4544729665495!2d112.43394687438895!3d-7.459209492552187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e780df15d66ce11%3A0x6d8646c139bd56ec!2sCabang%20Dinas%20Pendidikan%20Kabupaten%20dan%20Kota%20Mojokerto!5e1!3m2!1sen!2sid!4v1775617259354!5m2!1sen!2sid"
+                width="100%"
+                height="400"
+                style="border:0;"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi sekretariat HIMO Mojokerto Raya"
+              ></iframe>
+            </div>
+            <a
+              href="https://maps.google.com/?q=Cabang+Dinas+Pendidikan+Kabupaten+dan+Kota+Mojokerto"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn--maps"
+              aria-label="Buka lokasi di Google Maps (tab baru)"
+            >
+              <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+              Buka di Google Maps
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3. SOCIAL MEDIA SECTION ========== -->
+    <section class="social-section" aria-labelledby="social-heading">
+      <div class="container">
+        <div class="social-section__header" data-aos="fade-up">
+          <h2 class="social-section__heading" id="social-heading">Media Sosial Resmi</h2>
+          <p class="social-section__desc">Ikuti perkembangan HIMO Mojokerto Raya melalui media sosial berikut.</p>
+        </div>
+
+        <div class="social-grid">
+
+          <!-- Instagram -->
+          <article class="social-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="social-card__icon" style="color: #E1306C;" aria-hidden="true">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <p class="social-card__platform">Instagram</p>
+            <p class="social-card__handle">@himomjkt</p>
+            <a
+              href="https://www.instagram.com/himomjkt"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn--instagram"
+              aria-label="Ikuti HIMO di Instagram, buka di tab baru"
+            >
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              Ikuti di Instagram
+            </a>
+          </article>
+
+          <!-- TikTok -->
+          <article class="social-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="social-card__icon" style="color: #111;" aria-hidden="true">
+              <i class="fab fa-tiktok"></i>
+            </div>
+            <p class="social-card__platform">TikTok</p>
+            <p class="social-card__handle">@himomojokerto</p>
+            <a
+              href="https://www.tiktok.com/@himomojokerto"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn--tiktok"
+              aria-label="Tonton HIMO di TikTok, buka di tab baru"
+            >
+              <i class="fab fa-tiktok" aria-hidden="true"></i>
+              Tonton di TikTok
+            </a>
+          </article>
+
+          <!-- YouTube -->
+          <article class="social-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="social-card__icon" style="color: #FF0000;" aria-hidden="true">
+              <i class="fab fa-youtube"></i>
+            </div>
+            <p class="social-card__platform">YouTube</p>
+            <p class="social-card__handle">@himomojokertoraya</p>
+            <a
+              href="https://youtube.com/@himomojokertoraya"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn--youtube"
+              aria-label="Tonton HIMO di YouTube, buka di tab baru"
+            >
+              <i class="fab fa-youtube" aria-hidden="true"></i>
+              Tonton di YouTube
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 4. CATATAN SECTION ========== -->
+    <section class="catatan-section" aria-label="Catatan informasi kontak">
+      <div class="container">
+        <div class="catatan-box" data-aos="fade-up">
+          <i class="fa-solid fa-circle-info catatan-box__icon" aria-hidden="true"></i>
+          <p class="catatan-box__text">
+            Informasi kontak dapat diperbarui melalui dashboard admin oleh pengurus yang berwenang.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== SHARED FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="footer-logo" width="44" height="44" />
+          <div>
+            <strong class="footer-brand-name">HIMO Mojokerto Raya</strong>
+            <p class="footer-brand-tagline">The Spirit Of Majapahit Greatness</p>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="about.html" class="footer-link">Tentang</a>
+          <a href="struktur.html" class="footer-link">Struktur</a>
+          <a href="informasi.html" class="footer-link">Informasi</a>
+          <a href="kontak.html" class="footer-link">Kontak</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/himomjkt" target="_blank" rel="noopener noreferrer" aria-label="Instagram HIMO Mojokerto Raya" class="social-btn">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.tiktok.com/@himomojokerto" target="_blank" rel="noopener noreferrer" aria-label="TikTok HIMO Mojokerto Raya" class="social-btn">
+            <i class="fab fa-tiktok" aria-hidden="true"></i>
+          </a>
+          <a href="https://youtube.com/@himomojokertoraya" target="_blank" rel="noopener noreferrer" aria-label="YouTube HIMO Mojokerto Raya" class="social-btn">
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright 2026 &copy; HIMO Mojokerto Raya. Hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== SHARED SCRIPTS ========== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.AOS) {
+        AOS.init({ duration: 800, easing: 'ease-out-quart', once: true, offset: 70 });
+      }
+    });
+  </script>
+
+</body>
+</html>

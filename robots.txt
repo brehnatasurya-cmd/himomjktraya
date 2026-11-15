@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /database/
+Disallow: /.env
+
+Sitemap: https://himomojokerto.org/sitemap.xml

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang HIMO Mojokerto Raya | Himpunan Musyawarah OSIS</title>
+  <meta name="description" content="Profil, visi, misi, tujuan, dan nilai-nilai organisasi HIMO Mojokerto Raya. Wadah kolaborasi pelajar di Kabupaten dan Kota Mojokerto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .about-cols {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .about-cols__text h2 { margin-bottom: 20px; }
+    .about-cols__text p { color: var(--text-soft); font-size: 1.02rem; margin-bottom: 16px; }
+
+    .highlight-blocks { display: grid; gap: 0; border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+    .highlight-block { padding: 22px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 16px; transition: background var(--t-fast); }
+    .highlight-block:last-child { border-bottom: none; }
+    .highlight-block:hover { background: var(--bg-alt); }
+    .highlight-block__icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: var(--r-sm); background: rgba(11,31,58,0.06); color: var(--navy-mid); font-size: 0.95rem; flex-shrink: 0; margin-top: 2px; }
+    .highlight-block h4 { font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+    .highlight-block p { font-size: 0.87rem; color: var(--text-soft); max-width: none; margin: 0; }
+
+    .visi-section { background: var(--navy); padding: var(--section-y) 0; }
+    .visi-inner { max-width: 800px; margin-inline: auto; text-align: center; }
+    .visi-inner .section-label { display: block; margin-bottom: 20px; }
+    .visi-quote { font-size: clamp(1.3rem, 2.8vw, 2rem); font-weight: 700; color: #fff; line-height: 1.4; letter-spacing: -0.02em; position: relative; padding: 0 24px; }
+    .visi-quote::before { content: '\201C'; position: absolute; left: -8px; top: -16px; font-size: 5rem; line-height: 1; color: var(--sky); opacity: 0.4; font-family: Georgia, serif; }
+    .visi-ornament { display: flex; align-items: center; gap: 16px; justify-content: center; margin-top: 36px; }
+    .visi-ornament__line { flex: 1; max-width: 120px; height: 1px; background: rgba(255,255,255,0.18); }
+    .visi-ornament__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sky); }
+
+    .misi-list { counter-reset: misi; max-width: 760px; margin: 0 auto; }
+    .misi-item { display: flex; align-items: flex-start; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .misi-item:last-child { border-bottom: none; }
+    .misi-item__number { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--navy); color: #fff; display: grid; place-items: center; font-size: 1.1rem; font-weight: 800; }
+    .misi-item__text h3 { font-size: 1.08rem; color: var(--navy); margin-bottom: 6px; }
+    .misi-item__text p { font-size: 0.95rem; color: var(--text-soft); margin: 0; }
+
+    .tujuan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .tujuan-item { display: flex; align-items: flex-start; gap: 14px; padding: 20px; background: var(--bg); border-radius: var(--r-md); border: 1px solid var(--border-soft); }
+    .tujuan-item__icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: var(--r-sm); background: rgba(85,182,232,0.12); color: var(--navy-mid); font-size: 0.88rem; flex-shrink: 0; }
+    .tujuan-item p { font-size: 0.93rem; color: var(--text); font-weight: 500; margin: 0; }
+
+    .nilai-scroll { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .nilai-card { background: var(--bg); border-radius: var(--r-lg); border-top: 3px solid var(--navy); padding: 24px 20px; box-shadow: var(--shadow-xs); transition: box-shadow var(--t-base), transform var(--t-base); }
+    .nilai-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .nilai-card__name { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .nilai-card__desc { font-size: 0.84rem; color: var(--text-soft); line-height: 1.55; margin: 0; }
+
+    @media (max-width: 1024px) { .nilai-scroll { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) {
+      .about-cols { grid-template-columns: 1fr; gap: 40px; }
+      .tujuan-grid { grid-template-columns: 1fr; }
+      .nilai-scroll { grid-template-columns: repeat(2, 1fr); }
+      .visi-quote { font-size: 1.3rem; }
+    }
+    @media (max-width: 480px) { .nilai-scroll { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="site-header" data-transparent="false">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="brand" aria-label="HIMO Mojokerto Raya — Halaman Utama">
+          <img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="brand-logo" width="46" height="46" />
+          <div class="brand-text"><strong>HIMO</strong><span>Mojokerto Raya</span></div>
+        </a>
+        <nav aria-label="Navigasi utama">
+          <ul class="nav-menu">
+            <li><a href="about.html" class="nav-link">Tentang</a></li>
+            <li><a href="struktur.html" class="nav-link">Struktur Organisasi</a></li>
+            <li><a href="informasi.html" class="nav-link">Informasi Terbaru</a></li>
+            <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+          </ul>
+        </nav>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-mobile">
+          <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="nav-mobile" aria-label="Navigasi mobile" hidden>
+        <ul class="nav-mobile-list">
+          <li><a href="about.html" class="nav-mobile-link">Tentang</a></li>
+          <li><a href="struktur.html" class="nav-mobile-link">Struktur Organisasi</a></li>
+          <li><a href="informasi.html" class="nav-mobile-link">Informasi Terbaru</a></li>
+          <li><a href="kontak.html" class="nav-mobile-link">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="container" data-aos="fade-up">
+        <p class="page-header__label">Profil Organisasi</p>
+        <h1 class="page-header__title">Tentang HIMO Mojokerto Raya</h1>
+        <p class="page-header__desc">Mengenal identitas, visi, misi, dan nilai-nilai Himpunan Musyawarah OSIS Mojokerto Raya.</p>
+      </div>
+    </div>
+
+    <!-- 1. Tentang -->
+    <section class="section" id="profil" aria-labelledby="profil-heading">
+      <div class="container">
+        <div class="about-cols">
+          <div data-aos="fade-right">
+            <span class="section-label">Siapa Kami</span>
+            <h2 id="profil-heading">Himpunan Musyawarah OSIS Mojokerto Raya</h2>
+            <p>Himpunan Musyawarah OSIS (HIMO) Mojokerto Raya merupakan wadah kolaborasi, komunikasi, dan pengembangan organisasi siswa intra sekolah di wilayah Kabupaten dan Kota Mojokerto.</p>
+            <p>HIMO hadir sebagai ruang untuk membangun sinergi antarpelajar, meningkatkan kualitas kepemimpinan, serta menciptakan generasi muda yang aktif, kreatif, aspiratif, dan inspiratif.</p>
+            <p>Sebagai forum koordinasi antar-OSIS, HIMO menjadi jembatan komunikasi antara pelajar dengan pemangku kebijakan pendidikan di Mojokerto Raya, memastikan suara pelajar didengar dan direspons secara terstruktur.</p>
+          </div>
+          <div data-aos="fade-left" data-aos-delay="100">
+            <div class="highlight-blocks">
+              <div class="highlight-block">
+                <div class="highlight-block__icon" aria-hidden="true"><i class="fas fa-handshake"></i></div>
+                <div><h4>Kolaborasi</h4><p>Forum komunikasi dan koordinasi antar-OSIS di seluruh SMA Mojokerto Raya.</p></div>
+              </div>
+              <div class="highlight-block">
+                <div class="highlight-block__icon" aria-hidden="true"><i class="fas fa-award"></i></div>
+                <div><h4>Kepemimpinan</h4><p>Program pembinaan untuk meningkatkan kualitas dan kapasitas kepemimpinan pelajar.</p></div>
+              </div>
+              <div class="highlight-block">
+                <div class="highlight-block__icon" aria-hidden="true"><i class="fas fa-heart"></i></div>
+                <div><h4>Kepedulian Sosial</h4><p>Kegiatan bakti sosial dan aksi lingkungan sebagai wujud pelajar yang peduli.</p></div>
+              </div>
+              <div class="highlight-block">
+                <div class="highlight-block__icon" aria-hidden="true"><i class="fas fa-bullhorn"></i></div>
+                <div><h4>Aspirasi Pelajar</h4><p>Menyampaikan aspirasi pelajar kepada pemangku kebijakan secara terstruktur.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Visi -->
+    <section class="visi-section" id="visi" aria-labelledby="visi-heading">
+      <div class="container">
+        <div class="visi-inner" data-aos="fade-up">
+          <span class="section-label">Visi Organisasi</span>
+          <h2 id="visi-heading" class="visi-quote">Mewujudkan Himpunan Musyawarah OSIS Mojokerto Raya sebagai wadah kolaborasi yang progresif, inklusif, dan berdampak bagi pelajar serta masyarakat Mojokerto Raya.</h2>
+          <div class="visi-ornament" aria-hidden="true"><div class="visi-ornament__line"></div><div class="visi-ornament__dot"></div><div class="visi-ornament__line"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Misi -->
+    <section class="section section--alt" id="misi" aria-labelledby="misi-heading">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:48px" data-aos="fade-up">
+          <span class="section-label">Misi Organisasi</span>
+          <h2 id="misi-heading">Langkah Nyata HIMO</h2>
+        </div>
+        <div class="misi-list" data-aos="fade-up" data-aos-delay="80">
+          <div class="misi-item">
+            <div class="misi-item__number" aria-label="Misi pertama">1</div>
+            <div class="misi-item__text"><h3>Koordinasi Antar-OSIS</h3><p>Memperkuat koordinasi antar-OSIS di Kabupaten dan Kota Mojokerto agar tercipta sinergi yang efektif dan berkelanjutan.</p></div>
+          </div>
+          <div class="misi-item">
+            <div class="misi-item__number" aria-label="Misi kedua">2</div>
+            <div class="misi-item__text"><h3>Pengembangan Kepemimpinan</h3><p>Meningkatkan kualitas kepemimpinan dan kapasitas organisasi pelajar melalui pelatihan, forum, dan program pembinaan.</p></div>
+          </div>
+          <div class="misi-item">
+            <div class="misi-item__number" aria-label="Misi ketiga">3</div>
+            <div class="misi-item__text"><h3>Kegiatan Sosial dan Lingkungan</h3><p>Mendorong kegiatan sosial dan kepedulian pelajar terhadap masyarakat serta lingkungan sekitar Mojokerto Raya.</p></div>
+          </div>
+          <div class="misi-item">
+            <div class="misi-item__number" aria-label="Misi keempat">4</div>
+            <div class="misi-item__text"><h3>Jaringan Komunikasi Aktif</h3><p>Membangun jaringan komunikasi yang aktif dan kolaboratif antara seluruh anggota dan pemangku kepentingan.</p></div>
+          </div>
+          <div class="misi-item">
+            <div class="misi-item__number" aria-label="Misi kelima">5</div>
+            <div class="misi-item__text"><h3>Representasi Aspirasi Pelajar</h3><p>Menjadi representasi aspirasi pelajar kepada pemangku kebijakan pendidikan di Kabupaten dan Kota Mojokerto.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Tujuan -->
+    <section class="section" id="tujuan" aria-labelledby="tujuan-heading">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:48px" data-aos="fade-up">
+          <span class="section-label">Tujuan</span>
+          <h2 id="tujuan-heading">Apa yang Ingin Kami Capai</h2>
+        </div>
+        <div class="tujuan-grid">
+          <div class="tujuan-item" data-aos="fade-up" data-aos-delay="0"><div class="tujuan-item__icon" aria-hidden="true"><i class="fas fa-users"></i></div><p>Mempersatukan seluruh OSIS SMA di Mojokerto Raya dalam satu forum yang solid dan terstruktur.</p></div>
+          <div class="tujuan-item" data-aos="fade-up" data-aos-delay="60"><div class="tujuan-item__icon" aria-hidden="true"><i class="fas fa-lightbulb"></i></div><p>Menciptakan generasi pelajar yang kreatif, inovatif, dan berdaya saing di tingkat regional.</p></div>
+          <div class="tujuan-item" data-aos="fade-up" data-aos-delay="120"><div class="tujuan-item__icon" aria-hidden="true"><i class="fas fa-seedling"></i></div><p>Menumbuhkan budaya gotong royong dan kepedulian sosial di kalangan pelajar Mojokerto Raya.</p></div>
+          <div class="tujuan-item" data-aos="fade-up" data-aos-delay="180"><div class="tujuan-item__icon" aria-hidden="true"><i class="fas fa-comments"></i></div><p>Menjadi wadah komunikasi dua arah antara pelajar dan pemangku kebijakan pendidikan.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Nilai-nilai -->
+    <section class="section section--alt" id="nilai" aria-labelledby="nilai-heading">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:48px" data-aos="fade-up">
+          <span class="section-label">Nilai Organisasi</span>
+          <h2 id="nilai-heading">Nilai yang Kami Pegang</h2>
+        </div>
+        <div class="nilai-scroll">
+          <div class="nilai-card" data-aos="fade-up" data-aos-delay="0"><p class="nilai-card__name">Kolaboratif</p><p class="nilai-card__desc">Mengutamakan kerja sama dan gotong royong dalam setiap langkah organisasi.</p></div>
+          <div class="nilai-card" data-aos="fade-up" data-aos-delay="60"><p class="nilai-card__name">Progresif</p><p class="nilai-card__desc">Selalu terbuka terhadap perubahan dan terus berkembang menghadapi tantangan zaman.</p></div>
+          <div class="nilai-card" data-aos="fade-up" data-aos-delay="120"><p class="nilai-card__name">Inklusif</p><p class="nilai-card__desc">Menerima dan menghargai keberagaman latar belakang, gagasan, dan perspektif setiap anggota.</p></div>
+          <div class="nilai-card" data-aos="fade-up" data-aos-delay="180"><p class="nilai-card__name">Aspiratif</p><p class="nilai-card__desc">Mendengarkan dan memperjuangkan aspirasi seluruh pelajar secara bertanggung jawab.</p></div>
+          <div class="nilai-card" data-aos="fade-up" data-aos-delay="240"><p class="nilai-card__name">Inspiratif</p><p class="nilai-card__desc">Menjadi teladan dan sumber motivasi bagi generasi pelajar di Mojokerto Raya.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" aria-label="Navigasi lanjutan">
+      <div class="container">
+        <div style="background:var(--navy);border-radius:var(--r-xl);padding:60px 48px;text-align:center" data-aos="zoom-in">
+          <h2 style="color:#fff;margin-bottom:14px">Kenali Pengurus HIMO</h2>
+          <p style="color:rgba(255,255,255,0.72);margin-bottom:32px;margin-inline:auto;text-align:center">Lihat susunan kepengurusan lengkap HIMO Mojokerto Raya periode 2026/2027.</p>
+          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+            <a href="struktur.html" class="btn btn--accent">Lihat Struktur Organisasi</a>
+            <a href="informasi.html" class="btn btn--outline-white">Informasi Terbaru</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="footer-logo" width="44" height="44" />
+          <div><strong class="footer-brand-name">HIMO Mojokerto Raya</strong><p class="footer-brand-tagline">The Spirit Of Majapahit Greatness</p></div>
+        </div>
+        <div class="footer-links">
+          <a href="about.html" class="footer-link">Tentang</a>
+          <a href="struktur.html" class="footer-link">Struktur</a>
+          <a href="informasi.html" class="footer-link">Informasi</a>
+          <a href="kontak.html" class="footer-link">Kontak</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/himomjkt" target="_blank" rel="noopener noreferrer" aria-label="Instagram HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@himomojokerto" target="_blank" rel="noopener noreferrer" aria-label="TikTok HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://youtube.com/@himomojokertoraya" target="_blank" rel="noopener noreferrer" aria-label="YouTube HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>Copyright 2026 &copy; HIMO Mojokerto Raya. Hak cipta dilindungi.</p></div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script>document.addEventListener('DOMContentLoaded',function(){if(window.AOS)AOS.init({duration:800,easing:'ease-out-quart',once:true,offset:70,disable:window.matchMedia('(prefers-reduced-motion: reduce)').matches});});</script>
+</body>
+</html>

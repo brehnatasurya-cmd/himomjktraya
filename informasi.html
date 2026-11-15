@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informasi Terbaru | HIMO Mojokerto Raya</title>
+  <meta name="description" content="Berita, dokumentasi, dan publikasi kegiatan HIMO Mojokerto Raya." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .search-wrap__icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 11px 14px 11px 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      font-family: inherit;
+      font-size: 0.93rem;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color var(--t-fast), box-shadow var(--t-fast);
+      outline: none;
+    }
+
+    #search-input:focus {
+      border-color: var(--navy-mid);
+      box-shadow: 0 0 0 3px rgba(23, 74, 126, 0.12);
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 9px 16px;
+      border-radius: var(--r-md);
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+    }
+
+    .filter-btn:hover {
+      background: var(--bg-alt);
+      border-color: var(--navy-mid);
+      color: var(--navy);
+    }
+
+    .filter-btn.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    /* News grid */
+    #news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Empty state */
+    #empty-state {
+      display: none;
+      text-align: center;
+      padding: 72px 24px;
+      grid-column: 1 / -1;
+    }
+
+    #empty-state i {
+      font-size: 2.5rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    #empty-state h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    #empty-state p {
+      color: var(--text-soft);
+      font-size: 0.93rem;
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    @media (max-width: 1024px) { #news-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { #news-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header" data-transparent="false">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="brand" aria-label="HIMO Mojokerto Raya — Halaman Utama">
+          <img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="brand-logo" width="46" height="46" />
+          <div class="brand-text"><strong>HIMO</strong><span>Mojokerto Raya</span></div>
+        </a>
+        <nav aria-label="Navigasi utama">
+          <ul class="nav-menu">
+            <li><a href="about.html" class="nav-link">Tentang</a></li>
+            <li><a href="struktur.html" class="nav-link">Struktur Organisasi</a></li>
+            <li><a href="informasi.html" class="nav-link">Informasi Terbaru</a></li>
+            <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+          </ul>
+        </nav>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-mobile">
+          <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="nav-mobile" aria-label="Navigasi mobile" hidden>
+        <ul class="nav-mobile-list">
+          <li><a href="about.html" class="nav-mobile-link">Tentang</a></li>
+          <li><a href="struktur.html" class="nav-mobile-link">Struktur Organisasi</a></li>
+          <li><a href="informasi.html" class="nav-mobile-link">Informasi Terbaru</a></li>
+          <li><a href="kontak.html" class="nav-mobile-link">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="container" data-aos="fade-up">
+        <p class="page-header__label">Publikasi</p>
+        <h1 class="page-header__title">Informasi Terbaru</h1>
+        <p class="page-header__desc">Berita, dokumentasi, dan publikasi kegiatan HIMO Mojokerto Raya.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="news-heading">
+      <div class="container">
+
+        <!-- Filter + Search bar -->
+        <div class="filter-bar" role="search" aria-label="Cari dan filter informasi">
+          <div class="search-wrap">
+            <i class="fas fa-search search-wrap__icon" aria-hidden="true"></i>
+            <label for="search-input" class="sr-only">Cari informasi</label>
+            <input
+              type="search"
+              id="search-input"
+              name="search"
+              placeholder="Cari informasi..."
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="filter-buttons" role="group" aria-label="Filter kategori">
+            <button class="filter-btn active" data-filter="semua" type="button">Semua</button>
+            <button class="filter-btn" data-filter="koordinasi" type="button">Koordinasi</button>
+            <button class="filter-btn" data-filter="sosial" type="button">Sosial</button>
+            <button class="filter-btn" data-filter="lingkungan" type="button">Lingkungan</button>
+          </div>
+        </div>
+
+        <!-- News grid — live region for accessibility -->
+        <div id="news-grid" aria-live="polite" aria-label="Daftar informasi">
+
+          <article class="news-card" data-category="koordinasi" data-title="rapat koordinasi" data-aos="fade-up" data-aos-delay="0">
+            <img src="Rakoor.png" alt="Rapat Koordinasi HIMO Mojokerto Raya 2026" class="news-card__img" width="800" height="450" loading="lazy" />
+            <div class="news-card__body">
+              <div class="news-card__meta">
+                <span class="news-card__category">Koordinasi</span>
+                <time class="news-card__date" datetime="2026-05-23">23 Mei 2026</time>
+              </div>
+              <h2 class="news-card__title">Rapat Koordinasi</h2>
+              <p class="news-card__excerpt">HIMO Mojokerto Raya menjalankan program kerja Rapat Koordinasi pertama dalam masa kepengurusan 2026/2027. Kegiatan ini bertujuan menyelaraskan ide dan pemikiran antar-OSIS.</p>
+              <a href="informasi/rakoor-2026.html" class="news-card__link">
+                Baca selengkapnya
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="sosial" data-title="himo bersinar" data-aos="fade-up" data-aos-delay="100">
+            <img src="Bersinar.png" alt="HIMO Bersinar — Program Bakti Sosial 2026" class="news-card__img" width="800" height="450" loading="lazy" />
+            <div class="news-card__body">
+              <div class="news-card__meta">
+                <span class="news-card__category">Sosial</span>
+                <time class="news-card__date" datetime="2026-03-24">24 Maret 2026</time>
+              </div>
+              <h2 class="news-card__title">HIMO Bersinar</h2>
+              <p class="news-card__excerpt">Program HIMO Bersinar berbasis bakti sosial untuk mewujudkan generasi muda yang peduli dengan masyarakat sekitar Mojokerto Raya.</p>
+              <a href="informasi/himo-bersinar-2026.html" class="news-card__link">
+                Baca selengkapnya
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="news-card" data-category="lingkungan" data-title="himo clean up day" data-aos="fade-up" data-aos-delay="200">
+            <img src="IMG_4010.jpg" alt="HIMO Clean Up Day — Aksi Lingkungan 2026" class="news-card__img" width="800" height="450" loading="lazy" />
+            <div class="news-card__body">
+              <div class="news-card__meta">
+                <span class="news-card__category">Lingkungan</span>
+                <time class="news-card__date" datetime="2026-05-23">23 Mei 2026</time>
+              </div>
+              <h2 class="news-card__title">HIMO Clean Up Day</h2>
+              <p class="news-card__excerpt">Kegiatan kerja bakti dan aksi lingkungan sebagai wujud pelajar yang peduli terhadap kebersihan dan kelestarian lingkungan di Mojokerto Raya.</p>
+              <a href="informasi/himo-clean-up-day-2026.html" class="news-card__link">
+                Baca selengkapnya
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Empty state (shown by JS when no results) -->
+          <div id="empty-state" role="status" aria-live="polite">
+            <i class="fas fa-newspaper" aria-hidden="true"></i>
+            <h3>Tidak ada informasi ditemukan</h3>
+            <p>Coba ubah kata kunci pencarian atau pilih kategori yang berbeda.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><img src="Logo Himo Mojokerto.PNG" alt="" aria-hidden="true" class="footer-logo" width="44" height="44" /><div><strong class="footer-brand-name">HIMO Mojokerto Raya</strong><p class="footer-brand-tagline">The Spirit Of Majapahit Greatness</p></div></div>
+        <div class="footer-links"><a href="about.html" class="footer-link">Tentang</a><a href="struktur.html" class="footer-link">Struktur</a><a href="informasi.html" class="footer-link">Informasi</a><a href="kontak.html" class="footer-link">Kontak</a></div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/himomjkt" target="_blank" rel="noopener noreferrer" aria-label="Instagram HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@himomojokerto" target="_blank" rel="noopener noreferrer" aria-label="TikTok HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+          <a href="https://youtube.com/@himomojokertoraya" target="_blank" rel="noopener noreferrer" aria-label="YouTube HIMO Mojokerto Raya" class="social-btn"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>Copyright 2026 &copy; HIMO Mojokerto Raya. Hak cipta dilindungi.</p></div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.AOS) AOS.init({ duration: 800, easing: 'ease-out-quart', once: true, offset: 70, disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches });
+
+      // ---- Filter & Search ----
+      const cards = document.querySelectorAll('#news-grid .news-card');
+      const emptyState = document.getElementById('empty-state');
+      const searchInput = document.getElementById('search-input');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      let activeFilter = 'semua';
+
+      function applyFilters() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(function (card) {
+          const category = card.getAttribute('data-category') || '';
+          const title = card.getAttribute('data-title') || '';
+          const matchesFilter = activeFilter === 'semua' || category === activeFilter;
+          const matchesSearch = !query || title.includes(query) || category.includes(query);
+
+          if (matchesFilter && matchesSearch) {
+            card.style.display = '';
+            visible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        emptyState.style.display = visible === 0 ? 'block' : 'none';
+      }
+
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+          activeFilter = btn.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+
+      searchInput.addEventListener('input', applyFilters);
+    });
+  </script>
+</body>
+</html>
